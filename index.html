@@ -4,32 +4,43 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Flint – Política de Privacidad</title>
-  <meta name="description" content="Política de privacidad de Flint. Organiza tu día sin sacrificar tu privacidad: tus datos se quedan en tu dispositivo.">
-  <meta name="theme-color" content="#111827" />
+  <meta
+    name="description"
+    content="Política de privacidad de Flint y ficha de App Store: tareas simples, sin cuentas y sin costo."
+  />
+  <meta name="theme-color" content="#f8fafc" />
+  <!-- Reemplaza href con la URL pública de tu ícono de app cuando la tengas disponible -->
+  <link
+    rel="icon"
+    href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23dbeafe'/%3E%3Ctext x='50%25' y='54%25' text-anchor='middle' font-family='Inter,Arial' font-size='28' font-weight='700' fill='%231d4ed8'%3EFL%3C/text%3E%3C/svg%3E"
+  />
 
   <!-- Open Graph -->
   <meta property="og:type" content="website" />
   <meta property="og:title" content="Flint – Política de Privacidad" />
-  <meta property="og:description" content="Flint es una app de tareas minimalista que funciona sin cuentas ni seguimiento. Tus datos se quedan contigo." />
+  <meta
+    property="og:description"
+    content="Flint: app de tareas gratuita, sin cuentas. Lee la política de privacidad y la ficha publicada en App Store."
+  />
   <meta property="og:image" content="https://example.com/flint-og-image.png" />
   <meta property="og:locale" content="es_MX" />
 
   <!-- Styles -->
   <style>
     :root {
-      color-scheme: light dark;
-      --bg: #0b1120;
-      --bg-elevated: #020617;
-      --bg-soft: #111827;
+      color-scheme: light;
+      --bg: #f9fafb;
+      --bg-elevated: #ffffff;
+      --bg-soft: #e5e7eb;
       --accent: #2563eb;
-      --accent-soft: rgba(37, 99, 235, 0.08);
-      --accent-strong: rgba(37, 99, 235, 0.18);
-      --accent-text: #dbeafe;
-      --text-main: #e5e7eb;
-      --text-soft: #9ca3af;
-      --text-softer: #6b7280;
-      --border-subtle: rgba(148, 163, 184, 0.3);
-      --shadow-soft: 0 18px 45px rgba(15, 23, 42, 0.6);
+      --accent-soft: rgba(37, 99, 235, 0.14);
+      --accent-strong: rgba(37, 99, 235, 0.2);
+      --accent-text: #1d4ed8;
+      --text-main: #0b1524;
+      --text-soft: #1f2937;
+      --text-softer: #374151;
+      --border-subtle: rgba(15, 23, 42, 0.08);
+      --shadow-soft: 0 18px 38px rgba(15, 23, 42, 0.08);
       --radius-lg: 18px;
       --radius-xl: 26px;
       --radius-pill: 999px;
@@ -52,7 +63,7 @@
 
     body {
       font-family: var(--font-system);
-      background: radial-gradient(120% 160% at top left, #1f2937 0%, #020617 55%, #020617 100%);
+      background: radial-gradient(120% 160% at top left, #dbeafe 0%, #f9fafb 45%, #ffffff 100%);
       color: var(--text-main);
       line-height: 1.65;
       -webkit-font-smoothing: antialiased;
@@ -75,110 +86,25 @@
       align-items: center;
       justify-content: space-between;
       gap: 18px;
-      padding: 12px 8px 16px;
+      padding: 18px 8px 10px;
     }
 
     .logo-group {
       display: flex;
       align-items: center;
-      gap: 10px;
-    }
-
-    .logo-pill {
-      width: 34px;
-      height: 34px;
-      border-radius: 12px;
-      background: radial-gradient(circle at 30% 20%, #f97316, #ea580c 40%, #7c2d12 100%);
-      box-shadow: 0 10px 25px rgba(248, 113, 22, 0.4);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .logo-pill::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background: radial-gradient(circle at 25% 10%, rgba(255, 255, 255, 0.6), transparent 55%);
-      mix-blend-mode: screen;
-      opacity: 0.9;
-    }
-
-    .logo-pill span {
-      position: relative;
-      font-weight: 800;
-      font-size: 15px;
-      letter-spacing: 0.08em;
-      color: #fefce8;
+      gap: 12px;
     }
 
     .logo-text-main {
-      font-weight: 650;
-      font-size: 18px;
-      letter-spacing: 0.05em;
-      text-transform: uppercase;
-    }
-
-    .logo-text-sub {
-      font-size: 12px;
-      color: var(--text-soft);
-      margin-top: 2px;
-    }
-
-    nav.top-nav {
-      display: flex;
-      gap: 6px;
-      align-items: center;
-      font-size: 13px;
-    }
-
-    nav.top-nav button {
-      border-radius: var(--radius-pill);
-      border: 1px solid rgba(148, 163, 184, 0.35);
-      background: rgba(15, 23, 42, 0.7);
-      color: var(--text-main);
-      padding: 6px 12px;
-      cursor: pointer;
-      font-family: var(--font-system);
-      font-size: 13px;
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      transition: background var(--transition-fast), border-color var(--transition-fast),
-        transform 120ms ease-out, box-shadow 120ms ease-out;
-    }
-
-    nav.top-nav button span.tag {
-      background: rgba(148, 163, 184, 0.2);
-      border-radius: 999px;
-      padding: 2px 6px;
-      font-size: 10px;
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-    }
-
-    nav.top-nav button[data-primary="true"] {
-      border-color: rgba(37, 99, 235, 0.8);
-      background: radial-gradient(circle at 0 0, rgba(56, 189, 248, 0.2), transparent 55%),
-        radial-gradient(circle at 100% 100%, rgba(37, 99, 235, 0.68), #0f172a);
-      box-shadow: 0 12px 32px rgba(37, 99, 235, 0.7);
-    }
-
-    nav.top-nav button[data-primary="true"]:hover {
-      transform: translateY(-1px);
-    }
-
-    nav.top-nav button:hover {
-      background: rgba(31, 41, 55, 0.95);
-      border-color: rgba(148, 163, 184, 0.6);
+      font-weight: 750;
+      font-size: clamp(26px, 3vw, 32px);
+      letter-spacing: -0.02em;
     }
 
     main {
-      margin-top: 10px;
+      margin-top: 12px;
       display: grid;
-      grid-template-columns: minmax(0, 2.1fr) minmax(0, 1.45fr);
+      grid-template-columns: minmax(0, 2fr) minmax(0, 1.2fr);
       gap: 22px;
     }
 
@@ -201,13 +127,10 @@
     /* Hero left side */
 
     .hero {
-      padding: 22px 20px 20px;
+      padding: 28px 24px 22px;
       border-radius: var(--radius-xl);
-      background:
-        radial-gradient(circle at 0 0, rgba(234, 88, 12, 0.18), transparent 55%),
-        radial-gradient(circle at 100% 0, rgba(37, 99, 235, 0.2), transparent 55%),
-        linear-gradient(135deg, var(--bg-elevated), var(--bg-soft));
-      border: 1px solid rgba(148, 163, 184, 0.35);
+      background: linear-gradient(145deg, #ffffff, #eef2ff);
+      border: 1px solid rgba(15, 23, 42, 0.06);
       box-shadow: var(--shadow-soft);
       position: relative;
       overflow: hidden;
@@ -217,7 +140,9 @@
       content: "";
       position: absolute;
       inset: 0;
-      background: radial-gradient(circle at 40% 0, rgba(255, 255, 255, 0.08), transparent 60%);
+      background:
+        radial-gradient(circle at 15% 20%, rgba(37, 99, 235, 0.14), transparent 55%),
+        radial-gradient(circle at 85% 0%, rgba(249, 115, 22, 0.14), transparent 60%);
       opacity: 0.9;
       pointer-events: none;
     }
@@ -225,194 +150,67 @@
     .hero-inner {
       position: relative;
       z-index: 1;
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(0, 0.9fr);
+      gap: 18px;
     }
 
-    .chip-row {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-      margin-bottom: 18px;
-    }
-
-    .chip {
-      font-size: 11px;
-      text-transform: uppercase;
-      letter-spacing: 0.11em;
-      border-radius: var(--radius-pill);
-      padding: 5px 10px;
-      border: 1px solid rgba(148, 163, 184, 0.4);
-      background: rgba(15, 23, 42, 0.88);
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      color: var(--text-soft);
-    }
-
-    .chip strong {
-      color: var(--accent-text);
-      letter-spacing: 0.14em;
+    @media (max-width: 860px) {
+      .hero-inner {
+        grid-template-columns: minmax(0, 1fr);
+      }
     }
 
     .hero-title {
-      font-size: clamp(26px, 3vw, 32px);
-      margin: 0 0 8px;
+      font-size: clamp(34px, 4vw, 40px);
+      margin: 0 0 10px;
       letter-spacing: -0.03em;
     }
 
-    .hero-kicker {
-      font-size: 14px;
-      color: var(--accent-text);
-      margin-bottom: 4px;
-    }
-
     .hero-subtitle {
-      font-size: 14px;
+      font-size: 15px;
       color: var(--text-soft);
-      max-width: 560px;
+      max-width: 620px;
+      margin: 0;
     }
 
     .hero-subtitle span.highlight {
-      color: #e5e7eb;
-      font-weight: 500;
+      color: var(--text-main);
+      font-weight: 600;
     }
 
-    .hero-grid {
-      display: grid;
-      grid-template-columns: minmax(0, 1.25fr) minmax(0, 1.2fr);
-      gap: 16px;
-      margin-top: 22px;
-    }
-
-    @media (max-width: 880px) {
-      .hero-grid {
-        grid-template-columns: minmax(0, 1fr);
-      }
-    }
-
-    .card {
+    .appstore-card {
+      margin-top: 16px;
       border-radius: 18px;
-      padding: 16px 16px 14px;
-      border: 1px solid rgba(148, 163, 184, 0.45);
-      background: rgba(15, 23, 42, 0.86);
-      backdrop-filter: blur(12px);
-      position: relative;
-      overflow: hidden;
+      border: 1px solid rgba(15, 23, 42, 0.08);
+      background: rgba(255, 255, 255, 0.92);
+      padding: 14px 16px 12px;
+      box-shadow: 0 12px 28px rgba(15, 23, 42, 0.07);
     }
 
-    .card h2,
-    .card h3 {
+    .appstore-card h2 {
       margin: 0 0 6px;
       font-size: 15px;
+      letter-spacing: 0.02em;
     }
 
-    .card p {
-      margin: 0;
-      font-size: 13px;
-      color: var(--text-soft);
-    }
-
-    .card-tag {
-      display: inline-flex;
-      align-items: center;
-      gap: 4px;
-      font-size: 11px;
-      color: var(--text-softer);
-      text-transform: uppercase;
-      letter-spacing: 0.12em;
-      margin-bottom: 6px;
-    }
-
-    .card-tag-dot {
-      width: 7px;
-      height: 7px;
-      border-radius: 999px;
-      background: #22c55e;
-      box-shadow: 0 0 0 4px rgba(34, 197, 94, 0.25);
-    }
-
-    .pill-row {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 6px;
-      margin-top: 8px;
-    }
-
-    .pill {
-      padding: 3px 8px;
-      border-radius: 999px;
-      border: 1px solid rgba(148, 163, 184, 0.5);
-      font-size: 11px;
-      color: var(--text-softer);
-      background: rgba(15, 23, 42, 0.9);
-    }
-
-    .pill[data-accent="true"] {
-      border-color: rgba(37, 99, 235, 0.85);
-      background: rgba(37, 99, 235, 0.18);
-      color: var(--accent-text);
-    }
-
-    /* Privacy highlights */
-
-    .privacy-highlights {
-      border-radius: 18px;
-      padding: 14px 14px 12px;
-      background: radial-gradient(circle at 0 0, var(--accent-strong), transparent 70%),
-        rgba(15, 23, 42, 0.9);
-      border: 1px solid rgba(37, 99, 235, 0.7);
-      margin-top: 14px;
-    }
-
-    .privacy-highlights-title {
-      font-size: 13px;
-      text-transform: uppercase;
-      letter-spacing: 0.12em;
-      color: var(--accent-text);
-      margin-bottom: 6px;
-    }
-
-    .privacy-highlight-list {
-      list-style: none;
-      padding: 0;
-      margin: 0;
+    .appstore-card dl {
       display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 8px;
+      grid-template-columns: auto 1fr;
+      gap: 6px 12px;
+      margin: 10px 0 0;
+      padding: 0;
+      font-size: 13px;
     }
 
-    @media (max-width: 720px) {
-      .privacy-highlight-list {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-      }
+    .appstore-card dt {
+      color: var(--text-softer);
+      font-weight: 600;
     }
 
-    @media (max-width: 540px) {
-      .privacy-highlight-list {
-        grid-template-columns: minmax(0, 1fr);
-      }
-    }
-
-    .privacy-highlight-list li {
-      font-size: 12px;
-      color: var(--accent-text);
-      padding: 4px 8px;
-      border-radius: 999px;
-      background: rgba(15, 23, 42, 0.92);
-      border: 1px solid rgba(148, 163, 184, 0.6);
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-    }
-
-    .privacy-highlight-list li span.icon {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      width: 16px;
-      height: 16px;
-      border-radius: 999px;
-      background: rgba(37, 99, 235, 0.35);
-      font-size: 11px;
+    .appstore-card dd {
+      margin: 0;
+      color: var(--text-soft);
     }
 
     /* Right side */
@@ -426,10 +224,10 @@
     .side-card {
       padding: 16px 16px 14px;
       border-radius: 20px;
-      border: 1px solid rgba(148, 163, 184, 0.35);
-      background: radial-gradient(circle at 0 0, rgba(15, 118, 110, 0.2), transparent 65%),
-        rgba(15, 23, 42, 0.95);
-      backdrop-filter: blur(12px);
+      border: 1px solid rgba(15, 23, 42, 0.06);
+      background: radial-gradient(circle at 0 0, rgba(16, 185, 129, 0.18), transparent 65%),
+        #ffffff;
+      backdrop-filter: blur(0);
       position: relative;
       overflow: hidden;
     }
@@ -480,15 +278,15 @@
       font-size: 11px;
       border-radius: 999px;
       padding: 3px 8px;
-      border: 1px solid rgba(148, 163, 184, 0.55);
-      background: rgba(15, 23, 42, 0.95);
+      border: 1px solid rgba(15, 23, 42, 0.08);
+      background: rgba(226, 232, 240, 0.7);
       color: var(--text-softer);
     }
 
     .badge[data-ok="true"] {
-      border-color: rgba(34, 197, 94, 0.7);
-      background: rgba(21, 128, 61, 0.16);
-      color: #bbf7d0;
+      border-color: rgba(34, 197, 94, 0.35);
+      background: rgba(187, 247, 208, 0.8);
+      color: #14532d;
     }
 
     /* Tabs */
@@ -496,17 +294,17 @@
     .tabs {
       margin-top: 26px;
       border-radius: 20px;
-      border: 1px solid rgba(148, 163, 184, 0.35);
-      background: rgba(15, 23, 42, 0.9);
+      border: 1px solid rgba(15, 23, 42, 0.08);
+      background: #ffffff;
       overflow: hidden;
-      box-shadow: 0 15px 40px rgba(15, 23, 42, 0.9);
+      box-shadow: 0 12px 32px rgba(15, 23, 42, 0.08);
     }
 
     .tabs-header {
       display: flex;
-      border-bottom: 1px solid rgba(148, 163, 184, 0.35);
-      background: radial-gradient(circle at 0 0, rgba(37, 99, 235, 0.32), transparent 70%),
-        rgba(15, 23, 42, 0.96);
+      border-bottom: 1px solid rgba(15, 23, 42, 0.08);
+      background: radial-gradient(circle at 0 0, rgba(37, 99, 235, 0.2), transparent 70%),
+        #f8fafc;
       position: relative;
     }
 
@@ -514,7 +312,13 @@
       content: "";
       position: absolute;
       inset: 0;
-      background: linear-gradient(to right, rgba(15, 23, 42, 0.7), transparent 25%, transparent 75%, rgba(15, 23, 42, 0.7));
+      background: linear-gradient(
+        to right,
+        rgba(15, 23, 42, 0.05),
+        transparent 25%,
+        transparent 75%,
+        rgba(15, 23, 42, 0.05)
+      );
       mix-blend-mode: soft-light;
       opacity: 0.8;
       pointer-events: none;
@@ -531,7 +335,7 @@
       letter-spacing: 0.13em;
       border: none;
       background: transparent;
-      color: var(--accent-text);
+      color: var(--text-softer);
       cursor: pointer;
       transition: background var(--transition-med), color var(--transition-med);
     }
@@ -541,8 +345,8 @@
     }
 
     .tab-button[data-active="true"] {
-      background: rgba(15, 23, 42, 0.96);
-      color: #e5e7eb;
+      background: rgba(37, 99, 235, 0.12);
+      color: #1e3a8a;
     }
 
     .tab-button[data-active="true"] span {
@@ -598,13 +402,13 @@
       margin-top: 10px;
       padding: 10px 11px;
       border-radius: 12px;
-      border-left: 3px solid rgba(37, 99, 235, 0.75);
-      background: rgba(15, 23, 42, 0.95);
+      border-left: 3px solid rgba(37, 99, 235, 0.35);
+      background: #eef2ff;
       font-size: 13px;
     }
 
     .callout strong {
-      color: var(--accent-text);
+      color: #1d4ed8;
     }
 
     .taglist {
@@ -625,9 +429,9 @@
 
     .taglist li {
       border-radius: 14px;
-      border: 1px dashed rgba(148, 163, 184, 0.6);
+      border: 1px dashed rgba(15, 23, 42, 0.12);
       padding: 7px 10px;
-      background: rgba(15, 23, 42, 0.9);
+      background: #f8fafc;
     }
 
     .taglist strong {
@@ -640,11 +444,11 @@
 
     .accordion {
       margin-top: 14px;
-      border-top: 1px solid rgba(148, 163, 184, 0.5);
+      border-top: 1px solid rgba(15, 23, 42, 0.08);
     }
 
     .accordion-item {
-      border-bottom: 1px solid rgba(148, 163, 184, 0.35);
+      border-bottom: 1px solid rgba(15, 23, 42, 0.08);
     }
 
     .accordion-header {
@@ -669,7 +473,7 @@
       width: 18px;
       height: 18px;
       border-radius: 999px;
-      border: 1px solid rgba(148, 163, 184, 0.7);
+      border: 1px solid rgba(37, 99, 235, 0.35);
       display: inline-flex;
       align-items: center;
       justify-content: center;
@@ -680,7 +484,7 @@
 
     .accordion-header[data-open="true"] span.chevron {
       transform: rotate(90deg);
-      background: rgba(37, 99, 235, 0.2);
+      background: rgba(37, 99, 235, 0.14);
     }
 
     .accordion-body {
@@ -705,7 +509,7 @@
     .lang-section {
       margin-top: 28px;
       padding-top: 20px;
-      border-top: 1px solid rgba(148, 163, 184, 0.35);
+      border-top: 1px solid rgba(15, 23, 42, 0.08);
     }
 
     .lang-label {
@@ -744,169 +548,102 @@
       <!-- Top bar -->
       <header class="page-header" aria-label="Encabezado principal">
         <div class="logo-group">
-          <div class="logo-pill" aria-hidden="true">
-            <span>FL</span>
-          </div>
           <div>
             <div class="logo-text-main">FLINT</div>
-            <div class="logo-text-sub">Tu base tranquila para organizar el día</div>
           </div>
         </div>
-
-        <nav class="top-nav" aria-label="Acciones rápidas">
-          <button type="button" data-primary="true" onclick="document.getElementById('tab-es').scrollIntoView({behavior:'smooth'})">
-            <span>Ver política en español</span>
-          </button>
-          <button type="button" onclick="document.getElementById('tab-en').scrollIntoView({behavior:'smooth'})">
-            <span>See English version</span>
-            <span class="tag">EN</span>
-          </button>
-        </nav>
       </header>
 
       <!-- Main layout -->
       <main>
-        <!-- Left: hero & quick summary -->
+        <!-- Left: hero with App Store data -->
         <section class="hero" aria-labelledby="hero-title">
           <div class="hero-inner">
-            <div class="chip-row">
-              <div class="chip">
-                <strong>PRIVACIDAD</strong>
-                <span>Aplicación de tareas sin cuentas ni anuncios</span>
-              </div>
-              <div class="chip">
-                <span>Diseñada para</span>
-                <strong>enfocarte</strong>
+            <div>
+              <h1 id="hero-title" class="hero-title">Privacidad y ficha de Flint</h1>
+              <p class="hero-subtitle">
+                <span class="highlight">Una app para organizar tus tareas y pendientes de una manera sencilla.</span>
+                Diseñada en tono minimalista y vivo, sin cuentas, sin anuncios y con tus datos
+                guardados en tu dispositivo.
+              </p>
+
+              <div class="appstore-card" aria-label="Ficha publicada en App Store Connect">
+                <h2>Lo que compartiste en App Store Connect</h2>
+                <dl>
+                  <dt>Promotional text</dt>
+                  <dd>Una app para organizar tus tareas y pendientes de una manera sencilla.</dd>
+                  <dt>Description</dt>
+                  <dd>FLINT busca crear el diseño optimo para la organización personal diaria, esta es apenas la primera fase de la app.</dd>
+                  <dt>Keywords</dt>
+                  <dd>productivity</dd>
+                  <dt>Support URL</dt>
+                  <dd><a class="email-link" href="https://jl-cob8.github.io/App-FLINT-support/">https://jl-cob8.github.io/App-FLINT-support/</a></dd>
+                  <dt>Marketing URL</dt>
+                  <dd>No especificada</dd>
+                  <dt>Precio</dt>
+                  <dd>Gratuita – aparecerá como “Obtener”</dd>
+                  <dt>Versión</dt>
+                  <dd>1.0</dd>
+                  <dt>Disponibilidad</dt>
+                  <dd>175 países habilitados</dd>
+                  <dt>Inicio de sesión</dt>
+                  <dd>No se requiere cuenta</dd>
+                </dl>
               </div>
             </div>
 
-            <p class="hero-kicker">Política de privacidad de Flint</p>
-            <h1 id="hero-title" class="hero-title">
-              Organiza tu día sin entregar tus datos.
-            </h1>
-            <p class="hero-subtitle">
-              <span class="highlight">Flint</span> es una app de tareas y organización diaria que funciona sin cuentas,
-              sin publicidad y sin seguimiento oculto. Lo que escribes en Flint se guarda
-              <span class="highlight">solo en tu dispositivo</span>, para que puedas concentrarte en tus pendientes sin preocuparte
-              por tu información personal.
-            </p>
-
-            <div class="hero-grid" aria-label="Resumen de cómo Flint trata tus datos">
-              <article class="card">
-                <div class="card-tag">
-                  <span class="card-tag-dot"></span>
-                  En el dispositivo
-                </div>
-                <h2>Datos bajo tu control</h2>
-                <p>
-                  Tus tareas, grupos, preferencias y configuración se almacenan localmente en tu teléfono.
-                  Flint no sincroniza estos datos a servidores propios ni de terceros.
-                </p>
-                <div class="pill-row">
-                  <span class="pill" data-accent="true">Sin registro</span>
-                  <span class="pill">Sin cookies de rastreo</span>
-                  <span class="pill">Sin venta de datos</span>
-                </div>
-              </article>
-
-              <article class="card">
-                <div class="card-tag">
-                  <span class="card-tag-dot" style="background:#facc15;box-shadow:0 0 0 4px rgba(250,204,21,0.2);"></span>
-                  Filosofía de diseño
-                </div>
-                <h3>Privacidad como parte del producto</h3>
-                <p>
-                  Flint nació como herramienta personal para organizar el día de forma clara.
-                  Desde el diseño inicial se tomó una decisión simple: pedir
-                  <strong>la mínima información posible</strong> y procesarla solo donde pertenece: en tu dispositivo.
-                </p>
-                <div class="pill-row">
-                  <span class="pill">Diseño minimalista</span>
-                  <span class="pill">Transparencia</span>
-                  <span class="pill">Control para el usuario</span>
-                </div>
-              </article>
+            <div class="appstore-card" aria-label="Información adicional para revisión">
+              <h2>Contacto y notas de revisión</h2>
+              <dl>
+                <dt>Nombre</dt>
+                <dd>Joaquin Alvarez</dd>
+                <dt>Teléfono</dt>
+                <dd>+528771468197</dd>
+                <dt>Correo</dt>
+                <dd><a class="email-link" href="mailto:jam082008@gmail.com">jam082008@gmail.com</a></dd>
+                <dt>Notas de revisión</dt>
+                <dd>
+                  Flint is a simple to-do app. Users can create tasks and manage them using swipe gestures. Swiping a task allows the user to mark it as “completed” or set it as “priority.” Tapping the “Tareas” title opens the groups manager, where users can create task groups. To return to the main group, users tap the group title again. The “Tareas aplazadas” panel lets users temporarily store tasks or move them to other groups. When long-pressing a task, the “aplazar tarea” option appears to move it into this panel.
+                </dd>
+              </dl>
             </div>
-
-            <section class="privacy-highlights" aria-label="Puntos clave de privacidad">
-              <div class="privacy-highlights-title">En resumen, Flint:</div>
-              <ul class="privacy-highlight-list">
-                <li>
-                  <span class="icon" aria-hidden="true">✓</span>
-                  <span>No requiere crear cuenta.</span>
-                </li>
-                <li>
-                  <span class="icon" aria-hidden="true">✓</span>
-                  <span>No muestra anuncios ni trackers de anuncios.</span>
-                </li>
-                <li>
-                  <span class="icon" aria-hidden="true">✓</span>
-                  <span>No vende ni comparte información personal.</span>
-                </li>
-                <li>
-                  <span class="icon" aria-hidden="true">✓</span>
-                  <span>Guarda tus datos de tareas solo en tu dispositivo.</span>
-                </li>
-                <li>
-                  <span class="icon" aria-hidden="true">✓</span>
-                  <span>Funciona incluso sin conexión a internet.</span>
-                </li>
-                <li>
-                  <span class="icon" aria-hidden="true">✓</span>
-                  <span>Te permite borrar tus datos al eliminar la app.</span>
-                </li>
-              </ul>
-            </section>
           </div>
         </section>
 
-        <!-- Right: meta info & small cards -->
+        <!-- Right: meta info -->
         <aside class="side-panel" aria-label="Información del desarrollador y contexto">
-          <section class="side-card" aria-label="Información general de privacidad">
+          <section class="side-card" aria-label="Datos principales de privacidad">
             <h2>Datos principales</h2>
             <p>
-              Esta página describe cómo Flint trata tu información. Está pensada para ser clara
-              y fácil de leer, sin lenguaje complicado.
+              Esta página resume cómo Flint trata tu información y refleja los datos que ingresaste en App Store Connect.
             </p>
             <ul class="meta-list">
               <li>
                 <span class="meta-label">Nombre de la app:</span>
-                <span>Flint – Organizador de tareas</span>
+                <span>Flint</span>
               </li>
               <li>
-                <span class="meta-label">Desarrollador:</span>
-                <span>Joaquín Álvarez Mercado</span>
+                <span class="meta-label">Versión:</span>
+                <span>1.0</span>
+              </li>
+              <li>
+                <span class="meta-label">Precio:</span>
+                <span>Gratis (Obtener)</span>
+              </li>
+              <li>
+                <span class="meta-label">Soporte:</span>
+                <a class="email-link" href="https://jl-cob8.github.io/App-FLINT-support/">jl-cob8.github.io/App-FLINT-support/</a>
               </li>
               <li>
                 <span class="meta-label">Contacto:</span>
-                <a class="email-link" href="mailto:joaquinalvarezme@gmail.com">
-                  joaquinalvarezme@gmail.com
-                </a>
-              </li>
-              <li>
-                <span class="meta-label">Fecha de vigencia:</span>
-                <span>26 noviembre 2025</span>
+                <a class="email-link" href="mailto:jam082008@gmail.com">jam082008@gmail.com</a>
               </li>
             </ul>
             <div class="badge-row">
               <span class="badge" data-ok="true">Sin cuentas</span>
               <span class="badge" data-ok="true">Sin anuncios</span>
-              <span class="badge" data-ok="true">Sin analítica propia</span>
-              <span class="badge">Compatible con App Store</span>
+              <span class="badge">175 países</span>
             </div>
-          </section>
-
-          <section class="side-card" aria-label="Aviso sobre plataformas externas" style="background:radial-gradient(circle at 0 0, rgba(249,115,22,0.28), transparent 70%),rgba(15,23,42,0.96);">
-            <h2>Servicios de Apple</h2>
-            <p>
-              Para instalar Flint se utiliza la App Store de Apple. Apple puede procesar datos
-              técnicos (por ejemplo, estadísticas anónimas de descargas o informes de fallos)
-              de acuerdo con sus propias políticas de privacidad.
-            </p>
-            <p class="note">
-              Flint no tiene acceso directo a tu identidad personal a partir de esos datos;
-              únicamente puede ver información agregada que Apple muestra a los desarrolladores.
-            </p>
           </section>
         </aside>
       </main>
@@ -985,12 +722,6 @@
               se almacenan localmente para recordar tus elecciones.
             </li>
           </ul>
-
-          <p class="note">
-            Importante: si eliminas Flint de tu dispositivo, iOS puede borrar los datos asociados
-            a la app. No hacemos copias de seguridad en servidores propios, por lo que
-            <strong>no podremos recuperar tu información tras la eliminación</strong>.
-          </p>
 
           <h3>2.2 Datos que podrían tratar servicios externos</h3>
           <p>
@@ -1095,8 +826,8 @@
               localmente.
             </li>
             <li>
-              Si eliminas la app, iOS puede borrar los datos asociados. No existe copia de
-              seguridad gestionada por Flint.
+              Si eliminas la app, iOS puede borrar los datos asociados. Al reinstalar, la app
+              comenzará desde cero.
             </li>
           </ul>
 
@@ -1148,7 +879,6 @@
             la app o cambios en la normativa. Cuando lo hagamos:
           </p>
           <ul>
-            <li>Actualizaremos la fecha de vigencia indicada al inicio de esta página.</li>
             <li>
               En caso de cambios relevantes, podremos incluir una nota breve dentro de la app
               o en la descripción de la App Store.
@@ -1199,22 +929,6 @@
               </div>
             </div>
 
-            <div class="accordion-item">
-              <button class="accordion-header" type="button" data-open="false" onclick="toggleAccordion(this)">
-                <span class="label">¿Puedo hacer copia de seguridad de mis tareas?</span>
-                <span class="chevron" aria-hidden="true">›</span>
-              </button>
-              <div class="accordion-body">
-                <div class="accordion-body-inner">
-                  <p>
-                    Flint no envía tu información a servicios externos, pero tu dispositivo
-                    puede incluir sus propios mecanismos de respaldo (por ejemplo, copias de
-                    seguridad cifradas de iCloud si las tienes activadas). Revisa los ajustes
-                    de tu iPhone para conocer cómo se realizan estas copias.
-                  </p>
-                </div>
-              </div>
-            </div>
           </div>
 
           <div class="callout">
@@ -1271,11 +985,6 @@
             <li>Task state (completed, postponed, priority, etc.).</li>
             <li>Local preferences and layout configuration.</li>
           </ul>
-
-          <p class="note">
-            Deleting the app may remove this information from your device. Flint does not
-            keep a backup on its own servers.
-          </p>
 
           <h3>2.2 Data processed by Apple</h3>
           <p>
@@ -1340,10 +1049,6 @@
               <li>
                 <strong>No account.</strong>
                 You can use the full app without signing in.
-              </li>
-              <li>
-                <strong>Backups (if any) are handled by your device.</strong>
-                For example, iCloud device backups, if enabled.
               </li>
             </ul>
           </div>
