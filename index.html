@@ -54,14 +54,6 @@
       border-radius: var(--radius);
       box-shadow: var(--shadow);
       margin-bottom: 52px;
-      opacity: 0;
-      transform: translateY(16px);
-      transition: opacity 320ms ease, transform 320ms ease;
-    }
-
-    header.hero.show {
-      opacity: 1;
-      transform: translateY(0);
     }
 
     .hero-title {
@@ -126,14 +118,6 @@
       padding: 32px 28px;
       margin-bottom: 36px;
       box-shadow: var(--shadow);
-      opacity: 0;
-      transform: translateY(18px);
-      transition: opacity 360ms ease, transform 360ms ease;
-    }
-
-    section.section.show {
-      opacity: 1;
-      transform: translateY(0);
     }
 
     h2.section-title {
@@ -304,7 +288,12 @@
       color: var(--muted);
       margin-bottom: 10px;
     }
-    .chip:hover { border-width: 2px; box-shadow: 0 8px 18px rgba(0,0,0,0.08); transform: translateY(-1px); }
+
+    .chip:hover {
+      border-width: 2px;
+      box-shadow: 0 8px 18px rgba(0, 0, 0, 0.08);
+      transform: translateY(-1px);
+    }
 
     #privacy-policy .taglist {
       list-style: none;
@@ -455,7 +444,9 @@
 
       <section class="section" id="precio" aria-labelledby="precio-title">
         <h2 class="section-title" id="precio-title">Precio y disponibilidad</h2>
-        <p>Flint es de descarga gratuita e incluye un nivel básico para organizar tu día. Para quienes necesitan más, ofrecemos Flint Pro (Licencia Permanente de pago único) que desbloquea grupos y finanzas ilimitadas. También ofrecemos paquetes de Códigos de Regalo para que puedas compartir accesos Premium con tus amigos.</p>
+        <p>Flint es de descarga gratuita e incluye un nivel básico para organizar tu día. Para quienes necesitan más,
+          ofrecemos Flint Pro (Licencia Permanente de pago único) que desbloquea grupos y finanzas ilimitadas. También
+          ofrecemos paquetes de Códigos de Regalo para que puedas compartir accesos Premium con tus amigos.</p>
         <p class="list-title">Plataformas</p>
         <ul>
           <li>Disponible en iOS (iPhone) a través de la App Store.</li>
@@ -506,8 +497,9 @@
       <section class="section" id="privacy-policy" aria-labelledby="privacy-title">
         <h2 class="section-title" id="privacy-title">Legal / Legal</h2>
         <p class="note"><strong>Fecha de vigencia / Effective Date:</strong> 20 de febrero de 2026</p>
-        <p class="note">Aquí encontrarás nuestra Política de Privacidad y Términos de Uso. / Here you will find our Privacy Policy and Terms of Use.</p>
-        
+        <p class="note">Aquí encontrarás nuestra Política de Privacidad y Términos de Uso. / Here you will find our
+          Privacy Policy and Terms of Use.</p>
+
         <section class="tabs" aria-label="Documentos legales / Legal documents">
           <div class="tabs-header">
             <button id="tab-es-btn" class="tab-button" type="button" data-active="true" onclick="switchTab('es')">
@@ -518,93 +510,142 @@
             </button>
           </div>
 
-          <div style="padding: 12px 22px; border-bottom: 1px solid var(--border); background: #fafafa; font-size: 14px; text-align: center;">
-            <a href="#privacy" style="font-weight: 600; text-decoration: none;">Ir a Política de Privacidad</a> | 
+          <div
+            style="padding: 12px 22px; border-bottom: 1px solid var(--border); background: #fafafa; font-size: 14px; text-align: center;">
+            <a href="#privacy" style="font-weight: 600; text-decoration: none;">Ir a Política de Privacidad</a> |
             <a href="#terms" style="font-weight: 600; text-decoration: none;">Ir a Términos de Uso</a>
           </div>
 
           <!-- Spanish tab -->
-          <article id="tab-es" class="tab-content" data-active="true" lang="es" aria-label="Documentos legales en español">
-            
+          <article id="tab-es" class="tab-content" data-active="true" lang="es"
+            aria-label="Documentos legales en español">
+
             <div id="privacy">
               <h2>A. Política de Privacidad</h2>
-              <p>Flint se preocupa por tu privacidad. Nuestra aplicación está diseñada para ser minimalista y transparente respecto al uso de tu información.</p>
-              
+              <p>Flint se preocupa por tu privacidad. Nuestra aplicación está diseñada para ser minimalista y
+                transparente respecto al uso de tu información.</p>
+
               <h3>1. Datos Personales</h3>
-              <p>No recolectamos Información de Identificación Personal (PII) como nombres, apellidos, direcciones físicas o correos electrónicos. La aplicación no requiere la creación de una cuenta de usuario para funcionar.</p>
-              
+              <p>No recolectamos Información de Identificación Personal (PII) como nombres, apellidos, direcciones
+                físicas o correos electrónicos. La aplicación no requiere la creación de una cuenta de usuario para
+                funcionar.</p>
+
               <h3>2. Servicios de Terceros y Compras</h3>
-              <p>Para gestionar las licencias permanentes de Flint Pro y los Códigos de Regalo, utilizamos servicios de terceros de confianza:</p>
+              <p>Para gestionar las licencias permanentes de Flint Pro y los Códigos de Regalo, utilizamos servicios de
+                terceros de confianza:</p>
               <ul>
-                <li><strong>RevenueCat:</strong> Utilizamos RevenueCat para procesar las compras dentro de la aplicación. RevenueCat maneja los recibos de compra de Apple para verificar el estado de tus licencias.</li>
-                <li><strong>Google Firebase Realtime Database:</strong> Utilizamos Firebase de Google como almacenamiento en la nube estrictamente para gestionar y validar la emisión y canje de Códigos de Regalo.</li>
+                <li><strong>RevenueCat:</strong> Utilizamos RevenueCat para procesar las compras dentro de la
+                  aplicación. RevenueCat maneja los recibos de compra de Apple para verificar el estado de tus
+                  licencias.</li>
+                <li><strong>Google Firebase Realtime Database:</strong> Utilizamos Firebase de Google como
+                  almacenamiento en la nube estrictamente para gestionar y validar la emisión y canje de Códigos de
+                  Regalo.</li>
               </ul>
-              
+
               <h3>3. Identificadores Anónimos</h3>
-              <p>Para poder vincular tus compras y licencias permanentes de forma segura, recolectamos o generamos identificadores anónimos en tu dispositivo (como <code>deviceId</code> o <code>App User ID</code>). Estos identificadores se utilizan estrictamente para propósitos de verificación de licencias y sincronización del estado de Flint Pro a través de los servicios mencionados, sin estar vinculados a tu identidad real.</p>
+              <p>Para poder vincular tus compras y licencias permanentes de forma segura, recolectamos o generamos
+                identificadores anónimos en tu dispositivo (como <code>deviceId</code> o <code>App User ID</code>).
+                Estos identificadores se utilizan estrictamente para propósitos de verificación de licencias y
+                sincronización del estado de Flint Pro a través de los servicios mencionados, sin estar vinculados a tu
+                identidad real.</p>
             </div>
 
             <hr style="margin: 40px 0; border: none; border-top: 1px solid var(--border);" />
 
             <div id="terms">
               <h2>B. Términos de Uso / EULA</h2>
-              <p>Al descargar o usar Flint, aceptas los siguientes términos de uso. Si no estás de acuerdo con estos términos, no utilices la aplicación.</p>
+              <p>Al descargar o usar Flint, aceptas los siguientes términos de uso. Si no estás de acuerdo con estos
+                términos, no utilices la aplicación.</p>
 
               <h3>1. Licencia</h3>
-              <p>Flint es una aplicación que se licencia, no se vende. Tu uso de Flint está sujeto al Contrato de Licencia de Usuario Final para Aplicaciones Licenciadas (EULA Estándar de Apple). Puedes leer el EULA completo en el siguiente enlace: <br/> <a href="https://www.apple.com/legal/internet-services/itunes/dev/stdeula/" target="_blank" rel="noopener noreferrer">https://www.apple.com/legal/internet-services/itunes/dev/stdeula/</a>.</p>
-              
+              <p>Flint es una aplicación que se licencia, no se vende. Tu uso de Flint está sujeto al Contrato de
+                Licencia de Usuario Final para Aplicaciones Licenciadas (EULA Estándar de Apple). Puedes leer el EULA
+                completo en el siguiente enlace: <br /> <a
+                  href="https://www.apple.com/legal/internet-services/itunes/dev/stdeula/" target="_blank"
+                  rel="noopener noreferrer">https://www.apple.com/legal/internet-services/itunes/dev/stdeula/</a>.</p>
+
               <h3>2. Compras y Reembolsos</h3>
-              <p>Flint ofrece licencias "Premium de por vida" (Flint Pro), no suscripciones. Al adquirir Flint Pro, obtienes un acceso permanente a las funciones premium detalladas en la aplicación. Todas las compras son procesadas por Apple. Cualquier solicitud o gestión de reembolso debe realizarse y gestionarse directamente con Apple de acuerdo a sus políticas.</p>
+              <p>Flint ofrece licencias "Premium de por vida" (Flint Pro), no suscripciones. Al adquirir Flint Pro,
+                obtienes un acceso permanente a las funciones premium detalladas en la aplicación. Todas las compras son
+                procesadas por Apple. Cualquier solicitud o gestión de reembolso debe realizarse y gestionarse
+                directamente con Apple de acuerdo a sus políticas.</p>
 
               <h3>3. Política Antifraude (Códigos de Regalo)</h3>
-              <p>Los Códigos de Regalo adquiridos a través de la aplicación no tienen valor monetario, no son canjeables por dinero en efectivo, y está estrictamente prohibida su reventa o intercambio comercial. Cualquier abuso, reventa, o actividad que viole esta condición resultará en la revocación (ban) automática y permanente de la licencia asociada, sin derecho a reembolso.</p>
+              <p>Los Códigos de Regalo adquiridos a través de la aplicación no tienen valor monetario, no son canjeables
+                por dinero en efectivo, y está estrictamente prohibida su reventa o intercambio comercial. Cualquier
+                abuso, reventa, o actividad que viole esta condición resultará en la revocación (ban) automática y
+                permanente de la licencia asociada, sin derecho a reembolso.</p>
 
               <h3>4. Renuncia de Garantías</h3>
-              <p>La aplicación Flint se proporciona "tal cual" (as is) y según disponibilidad. El desarrollador no ofrece garantías de ningún tipo y renuncia explícitamente a cualquier responsabilidad por la pérdida de datos, fallos en la aplicación, interrupciones del servicio o daños resultantes del uso de la aplicación. Tu información (tareas, configuraciones) se almacena localmente y es tu responsabilidad su respaldo.</p>
+              <p>La aplicación Flint se proporciona "tal cual" (as is) y según disponibilidad. El desarrollador no
+                ofrece garantías de ningún tipo y renuncia explícitamente a cualquier responsabilidad por la pérdida de
+                datos, fallos en la aplicación, interrupciones del servicio o daños resultantes del uso de la
+                aplicación. Tu información (tareas, configuraciones) se almacena localmente y es tu responsabilidad su
+                respaldo.</p>
             </div>
-            
+
           </article>
 
           <!-- English tab -->
-          <article id="tab-en" class="tab-content" data-active="false" lang="en" aria-label="Legal documents in English">
-            
+          <article id="tab-en" class="tab-content" data-active="false" lang="en"
+            aria-label="Legal documents in English">
+
             <div id="privacy">
               <h2>A. Privacy Policy</h2>
-              <p>Flint cares about your privacy. Our application is designed to be minimal and transparent regarding the use of your information.</p>
-              
+              <p>Flint cares about your privacy. Our application is designed to be minimal and transparent regarding the
+                use of your information.</p>
+
               <h3>1. Personal Data</h3>
-              <p>We do not collect Personally Identifiable Information (PII) such as names, last names, physical addresses, or emails. The app does not require creating a user account to function.</p>
-              
+              <p>We do not collect Personally Identifiable Information (PII) such as names, last names, physical
+                addresses, or emails. The app does not require creating a user account to function.</p>
+
               <h3>2. Third-Party Services and Purchases</h3>
               <p>To manage the permanent licenses of Flint Pro and Gift Codes, we use trusted third-party services:</p>
               <ul>
-                <li><strong>RevenueCat:</strong> We use RevenueCat to process in-app purchases. RevenueCat handles Apple purchase receipts to verify the status of your licenses.</li>
-                <li><strong>Google Firebase Realtime Database:</strong> We use Google's Firebase as cloud storage strictly to manage and validate the issuance and redemption of Gift Codes.</li>
+                <li><strong>RevenueCat:</strong> We use RevenueCat to process in-app purchases. RevenueCat handles Apple
+                  purchase receipts to verify the status of your licenses.</li>
+                <li><strong>Google Firebase Realtime Database:</strong> We use Google's Firebase as cloud storage
+                  strictly to manage and validate the issuance and redemption of Gift Codes.</li>
               </ul>
-              
+
               <h3>3. Anonymous Identifiers</h3>
-              <p>To securely link your purchases and permanent licenses, we collect or generate anonymous identifiers on your device (such as <code>deviceId</code> or <code>App User ID</code>). These identifiers are used strictly for license verification purposes and synchronizing the Flint Pro status through the aforementioned services, without being tied to your real identity.</p>
+              <p>To securely link your purchases and permanent licenses, we collect or generate anonymous identifiers on
+                your device (such as <code>deviceId</code> or <code>App User ID</code>). These identifiers are used
+                strictly for license verification purposes and synchronizing the Flint Pro status through the
+                aforementioned services, without being tied to your real identity.</p>
             </div>
 
             <hr style="margin: 40px 0; border: none; border-top: 1px solid var(--border);" />
 
             <div id="terms">
               <h2>B. Terms of Use / EULA</h2>
-              <p>By downloading or using Flint, you agree to these terms of use. If you do not agree to these terms, do not use the app.</p>
+              <p>By downloading or using Flint, you agree to these terms of use. If you do not agree to these terms, do
+                not use the app.</p>
 
               <h3>1. License</h3>
-              <p>Flint is licensed, not sold, to you. Your use of Flint is subject to the Apple Standard End User License Agreement (Standard EULA). You can read the full EULA at the exact link: <br/> <a href="https://www.apple.com/legal/internet-services/itunes/dev/stdeula/" target="_blank" rel="noopener noreferrer">https://www.apple.com/legal/internet-services/itunes/dev/stdeula/</a>.</p>
-              
+              <p>Flint is licensed, not sold, to you. Your use of Flint is subject to the Apple Standard End User
+                License Agreement (Standard EULA). You can read the full EULA at the exact link: <br /> <a
+                  href="https://www.apple.com/legal/internet-services/itunes/dev/stdeula/" target="_blank"
+                  rel="noopener noreferrer">https://www.apple.com/legal/internet-services/itunes/dev/stdeula/</a>.</p>
+
               <h3>2. Purchases and Refunds</h3>
-              <p>Flint offers "Lifetime Premium" licenses (Flint Pro), not subscriptions. By purchasing Flint Pro, you gain permanent access to the premium features detailed in the app. All purchases are processed by Apple. Any refund requests must be handled directly with Apple in accordance with their policies.</p>
+              <p>Flint offers "Lifetime Premium" licenses (Flint Pro), not subscriptions. By purchasing Flint Pro, you
+                gain permanent access to the premium features detailed in the app. All purchases are processed by Apple.
+                Any refund requests must be handled directly with Apple in accordance with their policies.</p>
 
               <h3>3. Anti-Fraud Policy (Gift Codes)</h3>
-              <p>Gift Codes purchased through the app have no monetary value, cannot be redeemed for cash, and their resale or commercial exchange is strictly prohibited. Any abuse, resale, or activity that violates this condition will result in the automatic and permanent revocation (ban) of the associated license, without the right to a refund.</p>
+              <p>Gift Codes purchased through the app have no monetary value, cannot be redeemed for cash, and their
+                resale or commercial exchange is strictly prohibited. Any abuse, resale, or activity that violates this
+                condition will result in the automatic and permanent revocation (ban) of the associated license, without
+                the right to a refund.</p>
 
               <h3>4. Disclaimer of Warranties</h3>
-              <p>The Flint app is provided "as is" and as available. The developer makes no warranties of any kind and explicitly disclaims any liability for data loss, app failures, service interruptions, or damages resulting from the use of the app. Your information (tasks, settings) is stored locally, and it is your responsibility to back it up.</p>
+              <p>The Flint app is provided "as is" and as available. The developer makes no warranties of any kind and
+                explicitly disclaims any liability for data loss, app failures, service interruptions, or damages
+                resulting from the use of the app. Your information (tasks, settings) is stored locally, and it is your
+                responsibility to back it up.</p>
             </div>
-            
+
           </article>
         </section>
       </section>
@@ -634,19 +675,6 @@
       });
     });
 
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('show');
-            observer.unobserve(entry.target);
-          }
-        });
-      },
-      { threshold: 0.2 }
-    );
-
-    document.querySelectorAll('.section, .hero').forEach((el) => observer.observe(el));
 
     function switchTab(lang) {
       var esBtn = document.getElementById('tab-es-btn');
@@ -681,10 +709,6 @@
       document.querySelectorAll('.accordion-body').forEach(function (body) {
         body.style.maxHeight = '0px';
       });
-      const hero = document.querySelector('.hero');
-      if (hero) {
-        setTimeout(() => hero.classList.add('show'), 80);
-      }
     });
   </script>
 </body>
