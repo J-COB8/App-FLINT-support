@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-<html lang="en" data-lang="en">
+<html lang="es">
 
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Flint – Privacy Policy</title>
-  <meta name="description" content="Flint, a minimalist to-do app. Privacy policy and key details." />
+  <title>Flint – Política de Privacidad</title>
+  <meta name="description" content="Flint, app de tareas minimalista. Política de privacidad y datos clave." />
   <style>
     :root {
       --bg: #f7f7f7;
@@ -23,15 +23,6 @@
 
     * {
       box-sizing: border-box;
-    }
-
-    [data-lang] {
-      display: none;
-    }
-
-    html[data-lang="es"] [data-lang="es"],
-    html[data-lang="en"] [data-lang="en"] {
-      display: block;
     }
 
     body {
@@ -88,34 +79,6 @@
       gap: 12px;
       justify-content: center;
       flex-wrap: wrap;
-    }
-
-    .lang-toggle {
-      margin-top: 18px;
-      display: inline-flex;
-      gap: 8px;
-      padding: 6px;
-      border-radius: var(--radius-pill);
-      border: 1px solid var(--border);
-      background: #fff;
-      box-shadow: var(--shadow);
-    }
-
-    .lang-btn {
-      padding: 6px 12px;
-      border-radius: var(--radius-pill);
-      border: 1px solid transparent;
-      background: transparent;
-      font-weight: 700;
-      cursor: pointer;
-      color: var(--muted);
-      transition: background 160ms ease, color 160ms ease, transform 160ms ease;
-    }
-
-    .lang-btn[data-active="true"] {
-      background: var(--ink);
-      color: #fff;
-      transform: translateY(-1px);
     }
 
     .btn {
@@ -428,268 +391,129 @@
   <div class="page">
     <div class="inner">
       <header class="hero" id="top">
-        <div data-lang="es">
-          <h1 class="hero-title">FLINT</h1>
-          <p class="hero-subtitle">Una app de tareas minimalista para organizar tu día con calma.</p>
-          <p class="hero-meta">Desarrollada por Joaquín Álvarez Mercado · Categoría: Productividad · Versión 1.0</p>
-          <div class="hero-actions">
-            <button class="btn btn-primary" type="button">Descargar en iOS</button>
-            <button class="btn btn-secondary" type="button" data-scroll="privacy-policy">Política de privacidad</button>
-          </div>
-        </div>
-        <div data-lang="en">
-          <h1 class="hero-title">FLINT</h1>
-          <p class="hero-subtitle">A minimalist to-do app to organize your day with calm.</p>
-          <p class="hero-meta">Built by Joaquín Álvarez Mercado · Category: Productivity · Version 1.0</p>
-          <div class="hero-actions">
-            <button class="btn btn-primary" type="button">Download on iOS</button>
-            <button class="btn btn-secondary" type="button" data-scroll="privacy-policy">Privacy Policy</button>
-          </div>
-        </div>
-        <div class="lang-toggle" role="group" aria-label="Language selector">
-          <button class="lang-btn" type="button" data-lang-switch="es" data-active="false">ES</button>
-          <button class="lang-btn" type="button" data-lang-switch="en" data-active="true">EN</button>
+        <h1 class="hero-title">FLINT</h1>
+        <p class="hero-subtitle">Una app de tareas minimalista para organizar tu día con calma.</p>
+        <p class="hero-meta">Desarrollada por Joaquín Álvarez Mercado · Categoría: Productividad · Versión 1.0</p>
+        <div class="hero-actions">
+          <button class="btn btn-primary" type="button">Descargar en iOS</button>
+          <button class="btn btn-secondary" type="button" data-scroll="privacy-policy">Privacy Policy / Política de
+            privacidad</button>
         </div>
       </header>
 
-      <section class="section" id="sobre">
-        <div data-lang="es">
-          <h2 class="section-title">Sobre Flint</h2>
-          <p>Flint es una aplicación de lista de tareas pensada para algo muy específico: ayudarte a tener claro qué
-            importa hoy, sin pantallas llenas de cosas ni configuraciones complicadas.</p>
-          <p>No hay feeds, rankings ni notificaciones innecesarias. Solo tus pendientes, organizados de forma sencilla
-            para que puedas capturarlos, acomodarlos y completarlos.</p>
-          <p>La idea es que abras Flint, veas tu día en segundos y sigas con tu vida.</p>
-          <div class="chips">
-            <span class="chip">Minimalista</span>
-            <span class="chip">Sin anuncios</span>
-            <span class="chip">Sin cuentas</span>
-            <span class="chip">Funciona sin conexión</span>
-            <span class="chip">Hecha para el día a día</span>
-          </div>
-        </div>
-        <div data-lang="en">
-          <h2 class="section-title">About Flint</h2>
-          <p>Flint is a to-do list app designed for one specific thing: helping you see what matters today, without
-            crowded screens or complicated settings.</p>
-          <p>No feeds, rankings, or unnecessary notifications. Just your tasks, organized simply so you can capture
-            them, arrange them, and finish them.</p>
-          <p>The idea is that you open Flint, see your day in seconds, and move on with your life.</p>
-          <div class="chips">
-            <span class="chip">Minimalist</span>
-            <span class="chip">No ads</span>
-            <span class="chip">No accounts</span>
-            <span class="chip">Works offline</span>
-            <span class="chip">Built for daily use</span>
-          </div>
+      <section class="section" id="sobre" aria-labelledby="sobre-title">
+        <h2 class="section-title" id="sobre-title">Sobre Flint</h2>
+        <p>Flint es una aplicación de lista de tareas pensada para algo muy específico: ayudarte a tener claro qué
+          importa hoy, sin pantallas llenas de cosas ni configuraciones complicadas.</p>
+        <p>No hay feeds, rankings ni notificaciones innecesarias. Solo tus pendientes, organizados de forma sencilla
+          para que puedas capturarlos, acomodarlos y completarlos.</p>
+        <p>La idea es que abras Flint, veas tu día en segundos y sigas con tu vida.</p>
+        <div class="chips">
+          <span class="chip">Minimalista</span>
+          <span class="chip">Sin anuncios</span>
+          <span class="chip">Sin cuentas</span>
+          <span class="chip">Funciona sin conexión</span>
+          <span class="chip">Hecha para el día a día</span>
         </div>
       </section>
 
-      <section class="section" id="como">
-        <div data-lang="es">
-          <h2 class="section-title">Cómo funciona Flint</h2>
-          <div class="two-col">
-            <div>
-              <p class="list-title">Lo básico que puedes hacer</p>
-              <ul>
-                <li>Crear tareas y pendientes rápidamente.</li>
-                <li>Organizar tareas en grupos (por ejemplo: Escuela, Casa, Proyectos).</li>
-                <li>Usar gestos de swipe para marcar tareas como completadas o de prioridad.</li>
-                <li>Aplazar tareas al panel de “Tareas aplazadas” cuando no son para hoy.</li>
-                <li>Mover tareas entre grupos usando la opción “aplazar tarea”.</li>
-              </ul>
-            </div>
-            <div>
-              <p class="list-title">Decisiones de diseño</p>
-              <ul>
-                <li>La app está pensada para usarse sin cuenta ni registro.</li>
-                <li>Todo lo importante funciona sin conexión a internet.</li>
-                <li>La interfaz es sencilla y de alto contraste, inspirada en diseño blanco y negro.</li>
-                <li>La prioridad es que entiendas tu día en pocos segundos, no mostrarte más cosas.</li>
-              </ul>
-            </div>
+      <section class="section" id="como" aria-labelledby="como-title">
+        <h2 class="section-title" id="como-title">Cómo funciona Flint</h2>
+        <div class="two-col">
+          <div>
+            <p class="list-title">Lo básico que puedes hacer</p>
+            <ul>
+              <li>Crear tareas y pendientes rápidamente.</li>
+              <li>Organizar tareas en grupos (por ejemplo: Escuela, Casa, Proyectos).</li>
+              <li>Usar gestos de swipe para marcar tareas como completadas o de prioridad.</li>
+              <li>Aplazar tareas al panel de “Tareas aplazadas” cuando no son para hoy.</li>
+              <li>Mover tareas entre grupos usando la opción “aplazar tarea”.</li>
+            </ul>
           </div>
-        </div>
-        <div data-lang="en">
-          <h2 class="section-title">How Flint works</h2>
-          <div class="two-col">
-            <div>
-              <p class="list-title">The basics you can do</p>
-              <ul>
-                <li>Create tasks and reminders quickly.</li>
-                <li>Organize tasks into groups (for example: School, Home, Projects).</li>
-                <li>Use swipe gestures to mark tasks as completed or priority.</li>
-                <li>Move tasks to the “Postponed Tasks” panel when they are not for today.</li>
-                <li>Move tasks between groups using the “postpone task” option.</li>
-              </ul>
-            </div>
-            <div>
-              <p class="list-title">Design decisions</p>
-              <ul>
-                <li>The app is designed to work without an account or registration.</li>
-                <li>Everything important works offline.</li>
-                <li>The interface is simple and high contrast, inspired by black-and-white design.</li>
-                <li>The priority is that you understand your day in a few seconds, not show you more things.</li>
-              </ul>
-            </div>
+          <div>
+            <p class="list-title">Decisiones de diseño</p>
+            <ul>
+              <li>La app está pensada para usarse sin cuenta ni registro.</li>
+              <li>Todo lo importante funciona sin conexión a internet.</li>
+              <li>La interfaz es sencilla y de alto contraste, inspirada en diseño blanco y negro.</li>
+              <li>La prioridad es que entiendas tu día en pocos segundos, no mostrarte más cosas.</li>
+            </ul>
           </div>
         </div>
       </section>
 
-      <section class="section" id="precio">
-        <div data-lang="es">
-          <h2 class="section-title">Precio y disponibilidad</h2>
-          <p>Flint es de descarga gratuita e incluye un nivel básico para organizar tu día. Para quienes necesitan más,
-            ofrecemos Flint Pro (Licencia Permanente de pago único) que desbloquea grupos y finanzas ilimitadas.
-            También ofrecemos paquetes de Códigos de Regalo para que puedas compartir accesos Premium con tus amigos.</p>
-          <p class="list-title">Plataformas</p>
-          <ul>
-            <li>Disponible en iOS (iPhone) a través de la App Store.</li>
-            <li>La idea es llevar Flint también a otras plataformas en el futuro, incluyendo Android.</li>
-          </ul>
-          <p class="note">Cuando haya cambios importantes en el precio o en las plataformas, esta página se
-            actualizará para reflejarlo.</p>
-        </div>
-        <div data-lang="en">
-          <h2 class="section-title">Pricing and availability</h2>
-          <p>Flint is free to download and includes a basic tier to organize your day. For those who need more, we
-            offer Flint Pro (one-time Lifetime License) that unlocks unlimited groups and finances. We also offer Gift
-            Code packs so you can share Premium access with your friends.</p>
-          <p class="list-title">Platforms</p>
-          <ul>
-            <li>Available on iOS (iPhone) through the App Store.</li>
-            <li>The idea is to bring Flint to other platforms in the future, including Android.</li>
-          </ul>
-          <p class="note">When there are major changes in pricing or platforms, this page will be updated to reflect
-            them.</p>
-        </div>
+      <section class="section" id="precio" aria-labelledby="precio-title">
+        <h2 class="section-title" id="precio-title">Precio y disponibilidad</h2>
+        <p>Flint es de descarga gratuita e incluye un nivel básico para organizar tu día. Para quienes necesitan más,
+          ofrecemos Flint Pro (Licencia Permanente de pago único) que desbloquea grupos y finanzas ilimitadas. También
+          ofrecemos paquetes de Códigos de Regalo para que puedas compartir accesos Premium con tus amigos.</p>
+        <p class="list-title">Plataformas</p>
+        <ul>
+          <li>Disponible en iOS (iPhone) a través de la App Store.</li>
+          <li>La idea es llevar Flint también a otras plataformas en el futuro, incluyendo Android.</li>
+        </ul>
+        <p class="note">Cuando haya cambios importantes en el precio o en las plataformas, esta página se actualizará
+          para reflejarlo.</p>
       </section>
 
-      <section class="section" id="datos">
-        <div data-lang="es">
-          <h2 class="section-title">Datos principales de la app</h2>
-          <div class="two-col">
-            <div>
-              <p class="list-title">Información básica</p>
-              <ul class="data-list">
-                <li>Nombre de la app: Flint – Organizador de tareas.</li>
-                <li>Desarrollador: Joaquín Álvarez Mercado.</li>
-                <li>Categoría: Productividad.</li>
-                <li>Idioma principal: Español (México).</li>
-                <li>Versión inicial: 1.0.</li>
-                <li>Precio: Descarga gratuita (Ofrece compras dentro de la app).</li>
-              </ul>
-            </div>
-            <div>
-              <p class="list-title">Cómo se tratan los datos</p>
-              <ul class="data-list">
-                <li>Las tareas, grupos y estados se guardan solo en tu dispositivo.</li>
-                <li>Flint no sube tu información a servidores propios del desarrollador.</li>
-                <li>No se muestran anuncios ni se venden datos.</li>
-                <li>Puedes usar todas las funciones sin crear una cuenta.</li>
-              </ul>
-            </div>
+      <section class="section" id="datos" aria-labelledby="datos-title">
+        <h2 class="section-title" id="datos-title">Datos principales de la app</h2>
+        <div class="two-col">
+          <div>
+            <p class="list-title">Información básica</p>
+            <ul class="data-list">
+              <li>Nombre de la app: Flint – Organizador de tareas.</li>
+              <li>Desarrollador: Joaquín Álvarez Mercado.</li>
+              <li>Categoría: Productividad.</li>
+              <li>Idioma principal: Español (México).</li>
+              <li>Versión inicial: 1.0.</li>
+              <li>Precio: Descarga gratuita (Ofrece compras dentro de la app).</li>
+            </ul>
           </div>
-        </div>
-        <div data-lang="en">
-          <h2 class="section-title">Key app details</h2>
-          <div class="two-col">
-            <div>
-              <p class="list-title">Basic information</p>
-              <ul class="data-list">
-                <li>App name: Flint – Task organizer.</li>
-                <li>Developer: Joaquín Álvarez Mercado.</li>
-                <li>Category: Productivity.</li>
-                <li>Primary language: Spanish (Mexico).</li>
-                <li>Initial version: 1.0.</li>
-                <li>Price: Free download (offers in-app purchases).</li>
-              </ul>
-            </div>
-            <div>
-              <p class="list-title">How data is handled</p>
-              <ul class="data-list">
-                <li>Tasks, groups, and statuses are stored only on your device.</li>
-                <li>Flint does not upload your information to developer-owned servers.</li>
-                <li>No ads are shown and no data is sold.</li>
-                <li>You can use all features without creating an account.</li>
-              </ul>
-            </div>
+          <div>
+            <p class="list-title">Cómo se tratan los datos</p>
+            <ul class="data-list">
+              <li>Las tareas, grupos y estados se guardan solo en tu dispositivo.</li>
+              <li>Flint no sube tu información a servidores propios del desarrollador.</li>
+              <li>No se muestran anuncios ni se venden datos.</li>
+              <li>Puedes usar todas las funciones sin crear una cuenta.</li>
+            </ul>
           </div>
         </div>
       </section>
 
-      <section class="section" id="roadmap">
-        <div data-lang="es">
-          <h2 class="section-title">Próximamente</h2>
-          <p>Flint está empezando. La versión 1.0 se centra en resolver bien una cosa: ayudarte a organizar tu día. Más
-            adelante, la idea es explorar nuevas funciones, llevar la app a Android y seguir mejorando la experiencia
-            sin perder la simplicidad.</p>
-          <ul>
-            <li>Mejoras en la experiencia de grupos y tareas aplazadas.</li>
-            <li>Versión para Android.</li>
-            <li>Pequeños detalles de diseño y accesibilidad.</li>
-          </ul>
-        </div>
-        <div data-lang="en">
-          <h2 class="section-title">Coming soon</h2>
-          <p>Flint is just getting started. Version 1.0 focuses on doing one thing well: helping you organize your day.
-            Later on, the idea is to explore new features, bring the app to Android, and keep improving the experience
-            without losing simplicity.</p>
-          <ul>
-            <li>Improvements to the groups and postponed tasks experience.</li>
-            <li>Android version.</li>
-            <li>Small design and accessibility improvements.</li>
-          </ul>
-        </div>
+      <section class="section" id="roadmap" aria-labelledby="roadmap-title">
+        <h2 class="section-title" id="roadmap-title">Próximamente</h2>
+        <p>Flint está empezando. La versión 1.0 se centra en resolver bien una cosa: ayudarte a organizar tu día. Más
+          adelante, la idea es explorar nuevas funciones, llevar la app a Android y seguir mejorando la experiencia sin
+          perder la simplicidad.</p>
+        <ul>
+          <li>Mejoras en la experiencia de grupos y tareas aplazadas.</li>
+          <li>Versión para Android.</li>
+          <li>Pequeños detalles de diseño y accesibilidad.</li>
+        </ul>
       </section>
 
-      <section class="section" id="sobre-mi">
-        <div data-lang="es">
-          <h2 class="section-title">Sobre mí</h2>
-          <p>[Placeholder] Aquí puedes contar brevemente quién eres, tu enfoque de diseño y por qué creaste Flint.</p>
-          <p>[Placeholder] Incluye un detalle personal o profesional que conecte con la filosofía minimalista de la app.
-          </p>
-        </div>
-        <div data-lang="en">
-          <h2 class="section-title">About me</h2>
-          <p>[Placeholder] Share a short bio, your design approach, and why you built Flint.</p>
-          <p>[Placeholder] Add one personal or professional detail that connects with the app's minimalist philosophy.
-          </p>
-        </div>
-      </section>
-
-      <section class="section" id="privacy-policy">
-        <div data-lang="es">
-          <h2 class="section-title">Legal</h2>
-          <p class="note"><strong>Fecha de vigencia:</strong> 20 de febrero de 2026</p>
-          <p class="note">Aquí encontrarás nuestra Política de Privacidad y Términos de Uso.</p>
-        </div>
-        <div data-lang="en">
-          <h2 class="section-title">Legal</h2>
-          <p class="note"><strong>Effective Date:</strong> February 20, 2026</p>
-          <p class="note">Here you will find our Privacy Policy and Terms of Use.</p>
-        </div>
+      <section class="section" id="privacy-policy" aria-labelledby="privacy-title">
+        <h2 class="section-title" id="privacy-title">Legal / Legal</h2>
+        <p class="note"><strong>Fecha de vigencia / Effective Date:</strong> 20 de febrero de 2026</p>
+        <p class="note">Aquí encontrarás nuestra Política de Privacidad y Términos de Uso. / Here you will find our
+          Privacy Policy and Terms of Use.</p>
 
         <section class="tabs" aria-label="Documentos legales / Legal documents">
           <div class="tabs-header">
-            <button id="tab-es-btn" class="tab-button" type="button" data-active="true" onclick="setLanguage('es')">
+            <button id="tab-es-btn" class="tab-button" type="button" data-active="true" onclick="switchTab('es')">
               <span>Español</span>
             </button>
-            <button id="tab-en-btn" class="tab-button" type="button" data-active="false" onclick="setLanguage('en')">
+            <button id="tab-en-btn" class="tab-button" type="button" data-active="false" onclick="switchTab('en')">
               <span>English</span>
             </button>
           </div>
 
           <div
             style="padding: 12px 22px; border-bottom: 1px solid var(--border); background: #fafafa; font-size: 14px; text-align: center;">
-            <div data-lang="es">
-              <a href="#privacy" style="font-weight: 600; text-decoration: none;">Ir a Política de Privacidad</a> |
-              <a href="#terms" style="font-weight: 600; text-decoration: none;">Ir a Términos de Uso</a>
-            </div>
-            <div data-lang="en">
-              <a href="#privacy" style="font-weight: 600; text-decoration: none;">Go to Privacy Policy</a> |
-              <a href="#terms" style="font-weight: 600; text-decoration: none;">Go to Terms of Use</a>
-            </div>
+            <a href="#privacy" style="font-weight: 600; text-decoration: none;">Ir a Política de Privacidad</a> |
+            <a href="#terms" style="font-weight: 600; text-decoration: none;">Ir a Términos de Uso</a>
           </div>
 
           <!-- Spanish tab -->
@@ -826,32 +650,19 @@
         </section>
       </section>
 
-      <section class="section" id="contacto">
-        <div data-lang="es">
-          <h2 class="section-title">Contacto</h2>
-          <p>Si encontraste un error, tienes una sugerencia o solo quieres contar cómo usas Flint, puedes escribir
-            directamente al desarrollador:</p>
-          <ul class="data-list">
-            <li>Nombre: Joaquín Álvarez Mercado.</li>
-            <li>Correo de soporte: <a href="mailto:joaquinalvarezme@gmail.com">joaquinalvarezme@gmail.com</a>.</li>
-          </ul>
-        </div>
-        <div data-lang="en">
-          <h2 class="section-title">Contact</h2>
-          <p>If you found a bug, have a suggestion, or just want to share how you use Flint, you can write directly to
-            the developer:</p>
-          <ul class="data-list">
-            <li>Name: Joaquín Álvarez Mercado.</li>
-            <li>Support email: <a href="mailto:joaquinalvarezme@gmail.com">joaquinalvarezme@gmail.com</a>.</li>
-          </ul>
-        </div>
+      <section class="section" id="contacto" aria-labelledby="contacto-title">
+        <h2 class="section-title" id="contacto-title">Contacto</h2>
+        <p>Si encontraste un error, tienes una sugerencia o solo quieres contar cómo usas Flint, puedes escribir
+          directamente al desarrollador:</p>
+        <ul class="data-list">
+          <li>Nombre: Joaquín Álvarez Mercado.</li>
+          <li>Correo de soporte: <a href="mailto:joaquinalvarezme@gmail.com">joaquinalvarezme@gmail.com</a>.</li>
+        </ul>
       </section>
 
       <footer class="footer">
-        <span data-lang="es">© 2025 Flint · Joaquín Álvarez Mercado</span>
-        <span data-lang="es">Esta página es estática, en blanco y negro, y no utiliza cookies ni seguimiento.</span>
-        <span data-lang="en">© 2025 Flint · Joaquín Álvarez Mercado</span>
-        <span data-lang="en">This page is static, black and white, and uses no cookies or tracking.</span>
+        <span>© 2025 Flint · Joaquín Álvarez Mercado</span>
+        <span>Esta página es estática, en blanco y negro, y no utiliza cookies ni seguimiento.</span>
       </footer>
     </div>
   </div>
@@ -881,45 +692,6 @@
       enTab.dataset.active = !isEs ? 'true' : 'false';
     }
 
-    function setLanguage(lang) {
-      var isEs = lang === 'es';
-      var finalLang = isEs ? 'es' : 'en';
-      document.documentElement.setAttribute('lang', finalLang);
-      document.documentElement.dataset.lang = finalLang;
-
-      document.querySelectorAll('[data-lang-switch]').forEach(function (btn) {
-        btn.dataset.active = btn.dataset.langSwitch === finalLang ? 'true' : 'false';
-      });
-
-      switchTab(finalLang);
-
-      var meta = document.querySelector('meta[name="description"]');
-      if (finalLang === 'es') {
-        document.title = 'Flint – Política de Privacidad';
-        if (meta) meta.setAttribute('content', 'Flint, app de tareas minimalista. Política de privacidad y datos clave.');
-      } else {
-        document.title = 'Flint – Privacy Policy';
-        if (meta) meta.setAttribute('content', 'Flint, a minimalist to-do app. Privacy policy and key details.');
-      }
-    }
-
-    function detectInitialLang() {
-      var langs = [];
-      if (Array.isArray(navigator.languages)) {
-        langs = navigator.languages;
-      } else if (navigator.language) {
-        langs = [navigator.language];
-      }
-
-      var normalized = langs.map(function (l) { return (l || '').toLowerCase(); });
-      var hasEs = normalized.some(function (l) { return l.startsWith('es'); });
-      var hasEn = normalized.some(function (l) { return l.startsWith('en'); });
-
-      if (hasEs) return 'es';
-      if (hasEn) return 'en';
-      return 'en';
-    }
-
     function toggleAccordion(button) {
       var open = button.getAttribute('data-open') === 'true';
       var body = button.nextElementSibling;
@@ -936,14 +708,6 @@
     window.addEventListener('load', function () {
       document.querySelectorAll('.accordion-body').forEach(function (body) {
         body.style.maxHeight = '0px';
-      });
-
-      setLanguage(detectInitialLang());
-    });
-
-    document.querySelectorAll('[data-lang-switch]').forEach(function (btn) {
-      btn.addEventListener('click', function () {
-        setLanguage(btn.dataset.langSwitch);
       });
     });
   </script>
