@@ -621,12 +621,14 @@
           <p style="font-size:12px;color:var(--muted);margin-bottom:36px;font-family:var(--mono);" data-lang="es">Fecha de vigencia: 23 de enero de 2025</p>
           <p style="font-size:12px;color:var(--muted);margin-bottom:36px;font-family:var(--mono);" data-lang="en">Effective Date: January 23, 2025</p>
         </div>
+        <div id="privacy" aria-hidden="true"></div>
+        <div id="terms" aria-hidden="true"></div>
         <div class="legal-tabs">
           <button class="ltab-btn active" id="ltab-es" onclick="switchLegal('es')">Español</button>
           <button class="ltab-btn" id="ltab-en" onclick="switchLegal('en')">English</button>
         </div>
         <div class="ltab-content active legal-body" id="legal-es">
-          <h2>A. Política de Privacidad</h2>
+          <h2 id="privacy-es">A. Política de Privacidad</h2>
           <p>Flint se preocupa por tu privacidad. Nuestra aplicación está diseñada para ser minimalista y
             transparente respecto al uso de tu información.</p>
 
@@ -654,7 +656,7 @@
             sincronización del estado de Flint Pro a través de los servicios mencionados, sin estar vinculados a tu
             identidad real.</p>
           <hr class="legal-hr"/>
-          <h2>B. Términos de Uso / EULA</h2>
+          <h2 id="terms-es">B. Términos de Uso / EULA</h2>
           <p>Al descargar o usar Flint, aceptas los siguientes términos de uso.</p>
           <h3>1. Licencia</h3>
           <p>Flint se licencia, no se vende. Tu uso está sujeto al EULA Estándar de Apple: <a href="https://www.apple.com/legal/internet-services/itunes/dev/stdeula/" target="_blank" rel="noopener">apple.com/legal/…/stdeula</a></p>
@@ -666,7 +668,7 @@
           <p>La aplicación se proporciona "tal cual". Tu información se almacena localmente y es tu responsabilidad su respaldo.</p>
         </div>
         <div class="ltab-content legal-body" id="legal-en">
-          <h2>A. Privacy Policy</h2>
+          <h2 id="privacy-en">A. Privacy Policy</h2>
           <p>Flint cares about your privacy. Our application is designed to be minimal and transparent regarding the
             use of your information.</p>
 
@@ -689,7 +691,7 @@
             strictly for license verification purposes and synchronizing the Flint Pro status through the
             aforementioned services, without being tied to your real identity.</p>
           <hr class="legal-hr"/>
-          <h2>B. Terms of Use / EULA</h2>
+          <h2 id="terms-en">B. Terms of Use / EULA</h2>
           <p>By downloading or using Flint, you agree to these terms.</p>
           <h3>1. License</h3>
           <p>Flint is licensed, not sold. Your use is subject to Apple's Standard EULA: <a href="https://www.apple.com/legal/internet-services/itunes/dev/stdeula/" target="_blank" rel="noopener">apple.com/legal/…/stdeula</a></p>
@@ -790,7 +792,23 @@
       document.getElementById('ltab-' + lang).classList.add('active');
     }
 
+    function scrollToLegal(hash) {
+      var key = hash.replace('#', '');
+      if (key !== 'privacy' && key !== 'terms') return;
+      var lang = document.documentElement.lang || 'es';
+      switchLegal(lang);
+      var target = document.getElementById(key + '-' + lang);
+      if (target) {
+        target.scrollIntoView({ behavior: prefersReduced ? 'auto' : 'smooth', block: 'start' });
+      }
+    }
+
+    window.addEventListener('hashchange', function() {
+      scrollToLegal(location.hash);
+    });
+
     setLang('es');
+    scrollToLegal(location.hash || '');
   </script>
 </body>
 </html>
