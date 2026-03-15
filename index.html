@@ -1,716 +1,796 @@
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Flint – Política de Privacidad</title>
-  <meta name="description" content="Flint, app de tareas minimalista. Política de privacidad y datos clave." />
+  <title>Flint — A Personal Clarity System</title>
+  <meta name="description" content="Flint is a minimal iOS productivity app. Tasks, Journal, and Finances — all private, all yours." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Geist+Mono:wght@300;400;500&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&family=IBM+Plex+Sans:wght@600;700&display=swap" rel="stylesheet" />
   <style>
     :root {
-      --bg: #f7f7f7;
-      --card: #ffffff;
-      --ink: #0a0a0a;
-      --muted: #3a3a3a;
-      --border: #dcdcdc;
-      --shadow: 0 14px 36px rgba(0, 0, 0, 0.08);
-      --radius: 18px;
-      --radius-pill: 999px;
-      --content: min(960px, 100% - 32px);
-      --font: -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      scroll-behavior: smooth;
+      --white: #ffffff;
+      --off: #fafaf9;
+      --ink: #0c0c0b;
+      --muted: #8a8a85;
+      --light: #e8e8e4;
+      --lighter: #f2f2ef;
+      --serif: 'Instrument Serif', Georgia, serif;
+      --flint: 'IBM Plex Sans', 'DM Sans', sans-serif;
+      --mono: 'Geist Mono', monospace;
+      --sans: 'DM Sans', sans-serif;
+      --r: 14px;
+      --content: min(1040px, 100% - 48px);
     }
 
-    * {
-      box-sizing: border-box;
-    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
 
     body {
-      margin: 0;
-      background: var(--bg);
+      background:
+        radial-gradient(1200px 800px at 80% -10%, #f6f6f2 0%, rgba(246,246,242,0) 60%),
+        radial-gradient(900px 700px at 10% 0%, #f4f4f0 0%, rgba(244,244,240,0) 55%),
+        var(--white);
       color: var(--ink);
-      font-family: var(--font);
-      line-height: 1.7;
+      font-family: var(--sans);
       -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
     }
 
-    .page {
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
+    /* cursor is opt-in for desktop only */
+    html.has-cursor { cursor: none; }
+    .cursor,
+    .cursor-ring {
+      position: fixed;
+      pointer-events: none;
+      z-index: 9998;
+      transform: translate(-50%, -50%);
+      opacity: 0;
+      transition: opacity 200ms ease;
     }
-
-    .inner {
-      width: var(--content);
-      padding: 28px 0 64px;
-    }
-
-    header.hero {
-      text-align: center;
-      padding: 64px 24px 48px;
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      box-shadow: var(--shadow);
-      margin-bottom: 52px;
-    }
-
-    .hero-title {
-      font-size: clamp(42px, 6vw, 64px);
-      letter-spacing: -0.04em;
-      margin: 0 0 14px;
-    }
-
-    .hero-subtitle {
-      margin: 0 0 12px;
-      font-size: 18px;
-      color: var(--muted);
-    }
-
-    .hero-meta {
-      margin: 0 0 24px;
-      color: #555;
-      font-size: 14px;
-    }
-
-    .hero-actions {
-      display: flex;
-      gap: 12px;
-      justify-content: center;
-      flex-wrap: wrap;
-    }
-
-    .btn {
-      padding: 12px 18px;
-      border-radius: var(--radius-pill);
-      border: 1px solid var(--ink);
-      font-weight: 600;
-      cursor: pointer;
-      transition: transform 150ms ease, box-shadow 150ms ease, background 150ms ease, color 150ms ease;
-    }
-
-    .btn-primary {
+    .cursor {
+      width: 8px; height: 8px;
       background: var(--ink);
-      color: #fff;
-      box-shadow: 0 10px 28px rgba(0, 0, 0, 0.15);
+      border-radius: 50%;
+      z-index: 9999;
     }
+    .cursor-ring {
+      width: 36px; height: 36px;
+      border: 1px solid rgba(12,12,11,0.22);
+      border-radius: 50%;
+      transition: width 0.25s ease, height 0.25s ease, border-color 0.2s ease, opacity 200ms ease;
+    }
+    .cursor-ring.hover { width: 56px; height: 56px; border-color: rgba(12,12,11,0.45); }
+    html.has-cursor .cursor,
+    html.has-cursor .cursor-ring { opacity: 1; }
+    html:not(.has-cursor) .nav-cta,
+    html:not(.has-cursor) .btn-primary,
+    html:not(.has-cursor) .btn-ghost,
+    html:not(.has-cursor) .lang-btn,
+    html:not(.has-cursor) .ltab-btn,
+    html:not(.has-cursor) .btn-white { cursor: pointer; }
 
+    /* NAV */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 18px calc((100% - var(--content)) / 2);
+      background: rgba(255,255,255,0.86);
+      backdrop-filter: blur(24px);
+      border-bottom: 1px solid var(--lighter);
+    }
+    .nav-logo {
+      font-family: var(--flint); font-size: 22px; font-weight: 700;
+      letter-spacing: -0.03em; color: var(--ink); text-decoration: none;
+    }
+    .nav-logo em { font-style: italic; color: var(--muted); }
+    .nav-right { display: flex; align-items: center; gap: 20px; }
+    .lang-toggle {
+      display: flex; background: var(--lighter); border-radius: 999px;
+      padding: 3px; gap: 2px;
+    }
+    .lang-btn {
+      background: none; border: none;
+      font-family: var(--mono); font-size: 11px; font-weight: 500;
+      color: var(--muted); padding: 5px 13px; border-radius: 999px;
+      cursor: none; transition: all 180ms ease; letter-spacing: 0.06em;
+    }
+    .lang-btn.active { background: var(--ink); color: var(--white); }
+    .nav-cta {
+      display: inline-flex; align-items: center; gap: 7px;
+      background: var(--ink); color: var(--white);
+      font-family: var(--sans); font-size: 13px; font-weight: 500;
+      padding: 9px 18px; border-radius: 999px;
+      text-decoration: none; border: none; cursor: none;
+      transition: opacity 200ms ease, transform 200ms ease, box-shadow 200ms ease;
+    }
+    .nav-cta:hover { opacity: 0.82; transform: translateY(-1px); }
+    .nav-cta svg { width: 14px; height: 14px; flex-shrink: 0; }
+
+    .page { padding-top: 72px; }
+    .inner { width: var(--content); margin: 0 auto; }
+
+    /* HERO */
+    .hero {
+      min-height: 94vh; display: flex; flex-direction: column;
+      justify-content: center; padding: 100px 0 80px;
+      position: relative; overflow: hidden;
+    }
+    .hero-bg-word {
+      position: absolute; top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      font-family: var(--serif); font-style: italic;
+      font-size: clamp(180px, 26vw, 360px);
+      color: transparent;
+      -webkit-text-stroke: 1px var(--lighter);
+      white-space: nowrap; pointer-events: none;
+      user-select: none; z-index: 0;
+      opacity: 0;
+      animation: bgFade 1.4s 0.2s ease both;
+    }
+    @keyframes bgFade {
+      from { opacity: 0; transform: translate(-50%, -46%); }
+      to { opacity: 1; transform: translate(-50%, -50%); }
+    }
+    .hero-inner {
+      position: relative; z-index: 1;
+      display: grid; grid-template-columns: 1fr auto;
+      gap: 60px; align-items: center;
+    }
+    @media (max-width: 720px) {
+      .hero-inner { grid-template-columns: 1fr; }
+      .hero-phone { display: none; }
+    }
+    .hero-eyebrow {
+      display: inline-flex; align-items: center; gap: 10px;
+      font-family: var(--mono); font-size: 11px;
+      letter-spacing: 0.1em; text-transform: uppercase;
+      color: var(--muted); margin-bottom: 28px;
+      opacity: 0; animation: up 0.7s 0.1s ease both;
+    }
+    .hero-eyebrow::before {
+      content: ''; width: 20px; height: 1px; background: var(--light);
+    }
+    .hero-title {
+      font-family: var(--flint);
+      font-size: clamp(64px, 9vw, 112px);
+      font-weight: 700; line-height: 0.9;
+      letter-spacing: -0.03em; margin-bottom: 32px;
+      opacity: 0; animation: up 0.7s 0.18s ease both;
+    }
+    .hero-title em { font-style: normal; color: var(--muted); font-weight: 700; }
+    .hero-desc {
+      font-size: 17px; color: var(--muted); line-height: 1.75;
+      max-width: 420px; margin-bottom: 44px; font-weight: 300;
+      opacity: 0; animation: up 0.7s 0.26s ease both;
+    }
+    .hero-actions {
+      display: flex; align-items: center; gap: 14px; flex-wrap: wrap;
+      opacity: 0; animation: up 0.7s 0.34s ease both;
+    }
+    .btn-primary {
+      display: inline-flex; align-items: center; gap: 9px;
+      background: var(--ink); color: var(--white);
+      font-family: var(--sans); font-size: 14px; font-weight: 500;
+      padding: 14px 24px; border-radius: 999px;
+      text-decoration: none; border: none; cursor: none;
+      transition: transform 200ms ease, box-shadow 200ms ease;
+    }
     .btn-primary:hover {
-      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.2);
-      transform: translateY(-1px);
+      transform: translateY(-2px);
+      box-shadow: 0 16px 40px rgba(12,12,11,0.16);
     }
-
-    .btn-secondary {
-      background: #fff;
-      color: var(--ink);
+    .btn-primary svg { width: 16px; height: 16px; }
+    .btn-ghost {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: none; color: var(--muted);
+      font-family: var(--sans); font-size: 14px; font-weight: 400;
+      padding: 14px 20px; border-radius: 999px;
+      text-decoration: none; border: 1px solid var(--light);
+      cursor: none; transition: all 200ms ease;
     }
-
-    .btn-secondary:hover {
-      box-shadow: 0 10px 24px rgba(0, 0, 0, 0.1);
-      transform: translateY(-1px);
+    .btn-ghost:hover { border-color: var(--ink); color: var(--ink); }
+    .hero-stats {
+      margin-top: 60px; padding-top: 32px;
+      border-top: 1px solid var(--lighter);
+      display: flex; gap: 44px;
+      opacity: 0; animation: up 0.7s 0.44s ease both;
     }
-
-    section.section {
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      padding: 32px 28px;
-      margin-bottom: 36px;
-      box-shadow: var(--shadow);
+    .stat-item { display: flex; flex-direction: column; gap: 4px; }
+    .stat-n {
+      font-family: var(--serif); font-size: 22px;
+      letter-spacing: -0.03em; color: var(--ink);
     }
+    .stat-l { font-size: 12px; color: var(--muted); font-weight: 300; }
 
-    h2.section-title {
-      margin: 0 0 18px;
-      letter-spacing: -0.02em;
-      font-size: clamp(26px, 4vw, 34px);
+    /* PHONE */
+    .hero-phone {
+      opacity: 0;
+      animation: phoneIn 1s 0.5s cubic-bezier(0.16,1,0.3,1) both;
+      will-change: transform;
     }
-
-    p {
-      margin: 0 0 14px;
-      color: var(--muted);
+    @keyframes phoneIn {
+      from { opacity: 0; transform: translateY(40px) rotate(4deg); }
+      to { opacity: 1; transform: translateY(0) rotate(0deg); }
     }
-
-    ul {
-      margin: 0 0 14px 20px;
-      color: var(--muted);
-    }
-
-    li {
-      margin-bottom: 8px;
-    }
-
-    .chips {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-      margin-top: 14px;
-    }
-
-    .chip {
-      border: 1px solid var(--ink);
-      border-radius: var(--radius-pill);
-      padding: 8px 12px;
-      font-weight: 600;
-      transition: border 160ms ease, box-shadow 160ms ease, transform 160ms ease;
-    }
-
-    .chip:hover {
-      border-width: 2px;
-      box-shadow: 0 8px 18px rgba(0, 0, 0, 0.08);
-      transform: translateY(-1px);
-    }
-
-    .two-col {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 24px;
-    }
-
-    @media (max-width: 780px) {
-      .two-col {
-        grid-template-columns: 1fr;
-      }
-    }
-
-    .list-title {
-      font-weight: 700;
-      margin: 0 0 10px;
-      color: var(--ink);
-    }
-
-    .note {
-      font-size: 13px;
-      color: #555;
-    }
-
-    .data-list {
-      list-style: none;
-      padding: 0;
-      margin: 0;
-    }
-
-    .data-list li {
-      margin-bottom: 10px;
-      padding-bottom: 10px;
-      border-bottom: 1px solid var(--border);
-      color: var(--muted);
-    }
-
-    .data-list li:last-child {
-      border-bottom: none;
-    }
-
-    /* Privacy policy layout */
-    #privacy-policy .tabs {
-      margin-top: 12px;
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      background: #fff;
-      box-shadow: var(--shadow);
+    .phone-wrap {
+      width: 230px; height: 460px;
+      background: var(--off); border-radius: 44px;
+      border: 1px solid var(--light);
+      box-shadow: 0 40px 100px rgba(12,12,11,0.09), 0 0 0 1px var(--lighter);
       overflow: hidden;
+      animation: floatSoft 6s 1.6s ease-in-out infinite;
+    }
+    .phone-wrap img { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+    /* IMAGE PLACEHOLDER */
+    .img-ph {
+      width: 100%; height: 100%;
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      gap: 8px; background: var(--off);
+      border: 1.5px dashed var(--lighter); border-radius: inherit;
+      color: var(--light); font-family: var(--mono); font-size: 10px;
+      text-align: center; padding: 16px;
+    }
+    .img-ph svg { width: 20px; height: 20px; opacity: 0.4; }
+    .img-ph .note { font-size: 9px; color: #ccc; line-height: 1.5; max-width: 160px; }
+
+    /* SECTIONS */
+    .section { padding: 100px 0; }
+    .section-bordered { border-top: 1px solid var(--lighter); }
+
+    .eyebrow {
+      font-family: var(--mono); font-size: 10px;
+      letter-spacing: 0.14em; text-transform: uppercase;
+      color: var(--muted); margin-bottom: 20px;
+      display: flex; align-items: center; gap: 10px;
+    }
+    .eyebrow::after {
+      content: ''; flex: 1; max-width: 36px;
+      height: 1px; background: var(--light);
+    }
+    .s-title {
+      font-family: var(--serif);
+      font-size: clamp(34px, 4.5vw, 54px);
+      font-weight: 400; letter-spacing: -0.02em;
+      line-height: 1.1; margin-bottom: 14px;
+    }
+    .s-title em { font-style: italic; color: var(--muted); }
+    .s-sub {
+      font-size: 15px; color: var(--muted); font-weight: 300;
+      line-height: 1.75; max-width: 460px; margin-bottom: 56px;
     }
 
-    #privacy-policy .tabs-header {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      border-bottom: 1px solid var(--border);
-      background: #efefef;
+    /* METRICS */
+    .metrics-row {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 1px; background: var(--lighter);
+      border-radius: var(--r); overflow: hidden;
+    }
+    @media (max-width: 600px) { .metrics-row { grid-template-columns: 1fr; } }
+    .m-cell {
+      background: var(--white); padding: 44px 36px;
+      position: relative; overflow: hidden;
+      transition: background 240ms ease, transform 240ms ease, box-shadow 240ms ease;
+    }
+    .m-cell:hover { background: var(--off); transform: translateY(-4px); box-shadow: 0 18px 40px rgba(12,12,11,0.06); }
+    .m-cell::before {
+      content: ''; position: absolute;
+      top: 0; left: 36px; right: 36px; height: 2px;
+      background: var(--ink); transform: scaleX(0); transform-origin: left;
+      transition: transform 380ms cubic-bezier(0.16,1,0.3,1);
+    }
+    .m-cell:hover::before { transform: scaleX(1); }
+    .m-num {
+      font-family: var(--serif);
+      font-size: clamp(44px, 5vw, 64px); font-weight: 400;
+      letter-spacing: -0.04em; line-height: 1; margin-bottom: 12px;
+    }
+    .m-label { font-size: 13px; color: var(--muted); font-weight: 300; line-height: 1.6; }
+    .m-foot {
+      margin-top: 12px; font-family: var(--mono);
+      font-size: 10px; color: var(--light); letter-spacing: 0.05em;
     }
 
-    #privacy-policy .tab-button {
-      padding: 12px;
-      border: none;
-      background: transparent;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      font-weight: 700;
-      color: var(--muted);
-      cursor: pointer;
-      transition: background 160ms ease, color 160ms ease;
+    /* FEATURES */
+    .feat-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 1px; background: var(--lighter);
+      border-radius: var(--r); overflow: hidden;
+    }
+    @media (max-width: 700px) { .feat-grid { grid-template-columns: 1fr; } }
+    .feat-cell {
+      background: var(--white); padding: 36px 28px 40px;
+      transition: background 220ms ease, transform 220ms ease, box-shadow 220ms ease;
+    }
+    .feat-cell:hover { background: var(--off); transform: translateY(-4px); box-shadow: 0 18px 40px rgba(12,12,11,0.06); }
+    .feat-screen {
+      width: 100%; aspect-ratio: 9/16;
+      background: var(--off); border-radius: 18px;
+      border: 1px solid var(--lighter); overflow: hidden;
+      margin-bottom: 28px; display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      gap: 0; color: var(--light);
+      font-family: var(--mono); font-size: 10px;
+      text-align: center; padding: 0;
+      transition: border-color 250ms ease;
+    }
+    .feat-cell:hover .feat-screen { border-color: var(--light); }
+    .feat-screen svg { width: 18px; height: 18px; opacity: 0.35; }
+    .feat-screen .note { font-size: 9px; color: #d0d0cb; line-height: 1.5; max-width: 130px; }
+    .feat-screen img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 20%; }
+    .feat-n { font-family: var(--mono); font-size: 10px; color: var(--light); letter-spacing: 0.1em; margin-bottom: 10px; }
+    .feat-name { font-family: var(--serif); font-size: 22px; font-weight: 400; margin-bottom: 8px; letter-spacing: -0.01em; }
+    .feat-name em { font-style: italic; color: var(--muted); }
+    .feat-desc { font-size: 13px; color: var(--muted); line-height: 1.7; font-weight: 300; }
+
+    /* STRIP */
+    .strip {
+      display: grid; grid-template-columns: repeat(4, 1fr);
+      gap: 12px; margin-top: 56px;
+    }
+    @media (max-width: 640px) { .strip { grid-template-columns: repeat(2, 1fr); } }
+    .strip-slot {
+      aspect-ratio: 9/19; background: var(--off);
+      border-radius: 28px; border: 1px solid var(--lighter);
+      overflow: hidden; display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      gap: 6px; color: var(--light);
+      font-family: var(--mono); font-size: 9px;
+      text-align: center; padding: 10px;
+      transition: transform 400ms cubic-bezier(0.16,1,0.3,1), box-shadow 400ms ease;
+    }
+    .strip-slot:nth-child(2),
+    .strip-slot:nth-child(4) { transform: translateY(24px); }
+    .strip-slot:hover { transform: translateY(-8px) !important; box-shadow: 0 24px 60px rgba(12,12,11,0.09); }
+    .strip-slot svg { width: 16px; height: 16px; opacity: 0.3; }
+    .strip-slot img { width: 100%; height: 100%; object-fit: cover; }
+
+    /* VALUES */
+    .vals-grid {
+      display: grid; grid-template-columns: repeat(2, 1fr);
+      gap: 1px; background: var(--lighter);
+      border-radius: var(--r); overflow: hidden;
+    }
+    @media (max-width: 580px) { .vals-grid { grid-template-columns: 1fr; } }
+    .val-cell {
+      background: var(--white); padding: 44px 36px;
+      transition: background 220ms ease, transform 220ms ease, box-shadow 220ms ease;
+    }
+    .val-cell:hover { background: var(--off); transform: translateY(-4px); box-shadow: 0 18px 40px rgba(12,12,11,0.06); }
+    .val-n { font-family: var(--mono); font-size: 10px; color: var(--light); letter-spacing: 0.12em; margin-bottom: 18px; }
+    .val-title { font-family: var(--serif); font-size: 22px; font-weight: 400; margin-bottom: 12px; letter-spacing: -0.01em; }
+    .val-desc { font-size: 14px; color: var(--muted); line-height: 1.7; font-weight: 300; }
+
+    /* LEGAL */
+    .legal-tabs {
+      display: flex; gap: 3px; background: var(--lighter);
+      border-radius: 999px; padding: 3px; width: fit-content; margin-bottom: 48px;
+    }
+    .ltab-btn {
+      background: none; border: none;
+      font-family: var(--mono); font-size: 11px; font-weight: 500;
+      color: var(--muted); padding: 8px 20px; border-radius: 999px;
+      cursor: none; transition: all 160ms ease; letter-spacing: 0.05em;
+    }
+    .ltab-btn.active { background: var(--ink); color: var(--white); }
+    .ltab-content { display: none; }
+    .ltab-content.active { display: block; }
+    .legal-body h2 {
+      font-family: var(--serif); font-size: 28px; font-weight: 400;
+      margin: 40px 0 14px; letter-spacing: -0.01em;
+    }
+    .legal-body h3 { font-size: 14px; font-weight: 500; margin: 24px 0 8px; }
+    .legal-body p { font-size: 14px; color: var(--muted); margin-bottom: 12px; line-height: 1.75; font-weight: 300; }
+    .legal-body ul { margin: 0 0 14px 18px; }
+    .legal-body li { font-size: 14px; color: var(--muted); margin-bottom: 8px; line-height: 1.7; font-weight: 300; }
+    .legal-body a { color: var(--ink); }
+    .legal-body code {
+      font-family: var(--mono); font-size: 12px;
+      background: var(--lighter); border-radius: 4px; padding: 2px 6px;
+    }
+    .legal-hr { border: none; border-top: 1px solid var(--lighter); margin: 44px 0; }
+
+    /* CONTACT */
+    .contact-box {
+      background: var(--ink); border-radius: 24px; padding: 56px;
+      display: grid; grid-template-columns: 1fr auto;
+      gap: 40px; align-items: center;
+    }
+    @media (max-width: 640px) { .contact-box { grid-template-columns: 1fr; padding: 36px; } }
+    .contact-h {
+      font-family: var(--serif); font-size: clamp(28px, 3.5vw, 44px);
+      font-weight: 400; letter-spacing: -0.02em; color: var(--white);
+      line-height: 1.1; margin-bottom: 10px;
+    }
+    .contact-h em { font-style: italic; opacity: 0.45; }
+    .contact-sub { font-size: 14px; color: rgba(255,255,255,0.4); font-weight: 300; }
+    .contact-r { text-align: right; }
+    .contact-email { font-family: var(--mono); font-size: 12px; color: rgba(255,255,255,0.4); margin-bottom: 14px; }
+    .btn-white {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: var(--white); color: var(--ink);
+      font-family: var(--sans); font-size: 13px; font-weight: 500;
+      padding: 12px 22px; border-radius: 999px;
+      text-decoration: none; border: none; cursor: none;
+      transition: opacity 200ms ease, transform 200ms ease;
+    }
+    .btn-white:hover { opacity: 0.88; transform: translateY(-1px); }
+
+    /* FOOTER */
+    footer {
+      padding: 40px 0; border-top: 1px solid var(--lighter);
+      display: flex; justify-content: space-between;
+      align-items: center; flex-wrap: wrap; gap: 12px;
+    }
+    .footer-logo { font-family: var(--flint); font-size: 22px; font-weight: 700; letter-spacing: -0.03em; }
+    .footer-logo em { font-style: italic; color: var(--muted); }
+    .footer-note { font-family: var(--mono); font-size: 10px; color: var(--light); text-align: right; line-height: 1.7; }
+
+    /* REVEAL */
+    .reveal {
+      opacity: 0; transform: translateY(28px);
+      transition: opacity 0.75s cubic-bezier(0.16,1,0.3,1), transform 0.75s cubic-bezier(0.16,1,0.3,1);
+    }
+    .reveal.on { opacity: 1; transform: translateY(0); }
+    .d1 { transition-delay: 0.08s; }
+    .d2 { transition-delay: 0.16s; }
+
+    /* FLOAT */
+    @keyframes floatSoft {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
     }
 
-    #privacy-policy .tab-button[data-active="true"] {
-      background: #fff;
-      color: var(--ink);
+    /* KEYFRAMES */
+    @keyframes up {
+      from { opacity: 0; transform: translateY(22px); }
+      to { opacity: 1; transform: translateY(0); }
     }
 
-    #privacy-policy .tab-content {
-      display: none;
-      padding: 22px;
-      color: var(--muted);
-      font-size: 15px;
+    /* REDUCED MOTION */
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      * { animation: none !important; transition: none !important; }
     }
 
-    #privacy-policy .tab-content[data-active="true"] {
-      display: block;
+    /* TOUCH / COARSE POINTER */
+    @media (hover: none), (pointer: coarse) {
+      html { cursor: auto; }
+      .cursor, .cursor-ring { display: none !important; }
+      .nav-cta, .btn-primary, .btn-ghost, .lang-btn, .ltab-btn, .btn-white { cursor: pointer; }
     }
 
-    #privacy-policy .tab-content h2 {
-      margin: 0 0 10px;
-      font-size: 22px;
-      color: var(--ink);
-    }
-
-    #privacy-policy .tab-content h3 {
-      margin: 18px 0 8px;
-      font-size: 18px;
-      color: var(--ink);
-    }
-
-    #privacy-policy .tab-content p {
-      margin: 0 0 12px;
-    }
-
-    #privacy-policy .callout {
-      margin-top: 18px;
-      padding: 12px 14px;
-      border-left: 3px solid var(--ink);
-      background: #f4f4f4;
-      border-radius: var(--radius);
-      color: var(--muted);
-    }
-
-    #privacy-policy .callout strong {
-      color: var(--ink);
-    }
-
-    #privacy-policy .lang-section {
-      margin-top: 22px;
-      padding-top: 16px;
-      border-top: 1px solid var(--border);
-    }
-
-    #privacy-policy .lang-label {
-      font-size: 12px;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      color: var(--muted);
-      margin-bottom: 10px;
-    }
-
-    .chip:hover {
-      border-width: 2px;
-      box-shadow: 0 8px 18px rgba(0, 0, 0, 0.08);
-      transform: translateY(-1px);
-    }
-
-    #privacy-policy .taglist {
-      list-style: none;
-      padding: 0;
-      margin: 0;
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-      gap: 10px;
-    }
-
-    #privacy-policy .taglist li {
-      padding: 10px 12px;
-      border: 1px dashed var(--border);
-      border-radius: var(--radius);
-      background: #fafafa;
-      color: var(--muted);
-    }
-
-    #privacy-policy .taglist strong {
-      display: block;
-      margin-bottom: 4px;
-      color: var(--ink);
-    }
-
-    #privacy-policy .accordion {
-      margin-top: 18px;
-      border-top: 1px solid var(--border);
-    }
-
-    #privacy-policy .accordion-item {
-      border-bottom: 1px solid var(--border);
-    }
-
-    #privacy-policy .accordion-header {
-      width: 100%;
-      padding: 10px 0;
-      background: none;
-      border: none;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      cursor: pointer;
-      font-weight: 600;
-      color: var(--ink);
-      text-align: left;
-    }
-
-    #privacy-policy .accordion-header span.chevron {
-      font-size: 12px;
-      padding: 4px 8px;
-      border: 1px solid var(--border);
-      border-radius: var(--radius-pill);
-      transition: transform 160ms ease;
-    }
-
-    #privacy-policy .accordion-header[data-open="true"] span.chevron {
-      transform: rotate(90deg);
-    }
-
-    #privacy-policy .accordion-body {
-      max-height: 0;
-      overflow: hidden;
-      transition: max-height 200ms ease;
-      color: var(--muted);
-    }
-
-    #privacy-policy .accordion-body-inner {
-      padding: 0 0 12px;
-    }
-
-    #privacy-policy .email-link {
-      color: var(--ink);
-      text-decoration: underline;
-    }
-
-    .footer {
-      width: 100%;
-      max-width: var(--content);
-      display: flex;
-      justify-content: space-between;
-      gap: 12px;
-      flex-wrap: wrap;
-      color: #555;
-      font-size: 14px;
-      padding: 18px 0 32px;
-    }
-
-    a {
-      color: inherit;
-    }
+    /* MULTILANG */
+    [data-lang] { display: none; }
+    html.lang-es [data-lang="es"] { display: revert; }
+    html.lang-es span[data-lang="es"] { display: inline; }
+    html.lang-en [data-lang="en"] { display: revert; }
+    html.lang-en span[data-lang="en"] { display: inline; }
   </style>
 </head>
-
 <body>
+
+  <div class="cursor" id="cur"></div>
+  <div class="cursor-ring" id="ring"></div>
+
+  <!-- NAV -->
+  <nav>
+    <a href="#" class="nav-logo">Flint<em>.</em></a>
+    <div class="nav-right">
+      <div class="lang-toggle">
+        <button class="lang-btn active" id="btn-es" onclick="setLang('es')">ES</button>
+        <button class="lang-btn" id="btn-en" onclick="setLang('en')">EN</button>
+      </div>
+      <a href="https://apps.apple.com/mx/app/flint/id6748326474?l=en-GB" target="_blank" rel="noopener" class="nav-cta">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
+        <span data-lang="es">Descargar</span>
+        <span data-lang="en">Download</span>
+      </a>
+    </div>
+  </nav>
+
   <div class="page">
     <div class="inner">
-      <header class="hero" id="top">
-        <h1 class="hero-title">FLINT</h1>
-        <p class="hero-subtitle">Una app de tareas minimalista para organizar tu día con calma.</p>
-        <p class="hero-meta">Desarrollada por Joaquín Álvarez Mercado · Categoría: Productividad · Versión 1.0</p>
-        <div class="hero-actions">
-          <button class="btn btn-primary" type="button">Descargar en iOS</button>
-          <button class="btn btn-secondary" type="button" data-scroll="privacy-policy">Privacy Policy / Política de
-            privacidad</button>
-        </div>
-      </header>
 
-      <section class="section" id="sobre" aria-labelledby="sobre-title">
-        <h2 class="section-title" id="sobre-title">Sobre Flint</h2>
-        <p>Flint es una aplicación de lista de tareas pensada para algo muy específico: ayudarte a tener claro qué
-          importa hoy, sin pantallas llenas de cosas ni configuraciones complicadas.</p>
-        <p>No hay feeds, rankings ni notificaciones innecesarias. Solo tus pendientes, organizados de forma sencilla
-          para que puedas capturarlos, acomodarlos y completarlos.</p>
-        <p>La idea es que abras Flint, veas tu día en segundos y sigas con tu vida.</p>
-        <div class="chips">
-          <span class="chip">Minimalista</span>
-          <span class="chip">Sin anuncios</span>
-          <span class="chip">Sin cuentas</span>
-          <span class="chip">Funciona sin conexión</span>
-          <span class="chip">Hecha para el día a día</span>
-        </div>
-      </section>
-
-      <section class="section" id="como" aria-labelledby="como-title">
-        <h2 class="section-title" id="como-title">Cómo funciona Flint</h2>
-        <div class="two-col">
+      <!-- HERO -->
+      <section class="hero">
+        <div class="hero-bg-word">clarity</div>
+        <div class="hero-inner">
           <div>
-            <p class="list-title">Lo básico que puedes hacer</p>
-            <ul>
-              <li>Crear tareas y pendientes rápidamente.</li>
-              <li>Organizar tareas en grupos (por ejemplo: Escuela, Casa, Proyectos).</li>
-              <li>Usar gestos de swipe para marcar tareas como completadas o de prioridad.</li>
-              <li>Aplazar tareas al panel de “Tareas aplazadas” cuando no son para hoy.</li>
-              <li>Mover tareas entre grupos usando la opción “aplazar tarea”.</li>
-            </ul>
+            <p class="hero-eyebrow">
+              <span data-lang="es">Sistema de Claridad Personal — iOS</span>
+              <span data-lang="en">A Personal Clarity System — iOS</span>
+            </p>
+            <h1 class="hero-title">Flint<em>.</em></h1>
+            <p class="hero-desc" data-lang="es">Una app de tareas minimalista para iOS. Sin suscripciones, sin nube, sin distracciones. Tus datos son tuyos.</p>
+            <p class="hero-desc" data-lang="en">A minimal task app for iOS. No subscriptions, no cloud, no noise. Your data is yours.</p>
+            <div class="hero-actions">
+              <a href="https://apps.apple.com/mx/app/flint/id6748326474?l=en-GB" target="_blank" rel="noopener" class="btn-primary">
+                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
+                <span data-lang="es">Descargar en App Store</span>
+                <span data-lang="en">Download on App Store</span>
+              </a>
+              <a href="#legal" class="btn-ghost">
+                <span data-lang="es">Política de Privacidad</span>
+                <span data-lang="en">Privacy Policy</span>
+              </a>
+            </div>
           </div>
-          <div>
-            <p class="list-title">Decisiones de diseño</p>
-            <ul>
-              <li>La app está pensada para usarse sin cuenta ni registro.</li>
-              <li>Todo lo importante funciona sin conexión a internet.</li>
-              <li>La interfaz es sencilla y de alto contraste, inspirada en diseño blanco y negro.</li>
-              <li>La prioridad es que entiendas tu día en pocos segundos, no mostrarte más cosas.</li>
-            </ul>
+          <!-- PHONE -->
+          <div class="hero-phone">
+            <div class="phone-wrap">
+              <img src="assets/flint-hero-tasks.png" alt="Flint Tasks screen" loading="eager" />
+            </div>
           </div>
         </div>
       </section>
 
-      <section class="section" id="precio" aria-labelledby="precio-title">
-        <h2 class="section-title" id="precio-title">Precio y disponibilidad</h2>
-        <p>Flint es de descarga gratuita e incluye un nivel básico para organizar tu día. Para quienes necesitan más,
-          ofrecemos Flint Pro (Licencia Permanente de pago único) que desbloquea grupos y finanzas ilimitadas. También
-          ofrecemos paquetes de Códigos de Regalo para que puedas compartir accesos Premium con tus amigos.</p>
-        <p class="list-title">Plataformas</p>
-        <ul>
-          <li>Disponible en iOS (iPhone) a través de la App Store.</li>
-          <li>La idea es llevar Flint también a otras plataformas en el futuro, incluyendo Android.</li>
-        </ul>
-        <p class="note">Cuando haya cambios importantes en el precio o en las plataformas, esta página se actualizará
-          para reflejarlo.</p>
-      </section>
-
-      <section class="section" id="datos" aria-labelledby="datos-title">
-        <h2 class="section-title" id="datos-title">Datos principales de la app</h2>
-        <div class="two-col">
-          <div>
-            <p class="list-title">Información básica</p>
-            <ul class="data-list">
-              <li>Nombre de la app: Flint – Organizador de tareas.</li>
-              <li>Desarrollador: Joaquín Álvarez Mercado.</li>
-              <li>Categoría: Productividad.</li>
-              <li>Idioma principal: Español (México).</li>
-              <li>Versión inicial: 1.0.</li>
-              <li>Precio: Descarga gratuita (Ofrece compras dentro de la app).</li>
-            </ul>
+      <!-- FEATURES -->
+      <section class="section section-bordered">
+        <div class="reveal">
+          <p class="eyebrow" data-lang="es">Tres áreas</p>
+          <p class="eyebrow" data-lang="en">Three areas</p>
+          <h2 class="s-title" data-lang="es">Todo lo que necesitas.<br><em>Nada que no.</em></h2>
+          <h2 class="s-title" data-lang="en">Everything you need.<br><em>Nothing you don't.</em></h2>
+          <p class="s-sub" data-lang="es">Diseñado bajo el principio de claridad sobre completitud. Flint no compite con apps complejas — las reemplaza.</p>
+          <p class="s-sub" data-lang="en">Designed on the principle of clarity over completeness. Flint doesn't compete with complex apps — it replaces them.</p>
+        </div>
+        <div class="feat-grid reveal d1">
+          <div class="feat-cell">
+            <div class="feat-screen">
+              <img src="assets/flint-feature-tasks.png" alt="Tasks feature screen" loading="lazy" />
+            </div>
+            <div class="feat-n">01 / Tasks</div>
+            <div class="feat-name" data-lang="es">Enfoque</div>
+            <div class="feat-name" data-lang="en">Focus</div>
+            <p class="feat-desc" data-lang="es">Gestión dinámica con priorización forzada. Siempre sabes qué atacar primero, sin parálisis de decisión.</p>
+            <p class="feat-desc" data-lang="en">Dynamic management with forced prioritization. Always know what to tackle first, without decision paralysis.</p>
           </div>
-          <div>
-            <p class="list-title">Cómo se tratan los datos</p>
-            <ul class="data-list">
-              <li>Las tareas, grupos y estados se guardan solo en tu dispositivo.</li>
-              <li>Flint no sube tu información a servidores propios del desarrollador.</li>
-              <li>No se muestran anuncios ni se venden datos.</li>
-              <li>Puedes usar todas las funciones sin crear una cuenta.</li>
-            </ul>
+          <div class="feat-cell">
+            <div class="feat-screen">
+              <img src="assets/flint-feature-journal.png" alt="Journal feature screen" loading="lazy" />
+            </div>
+            <div class="feat-n">02 / Journal</div>
+            <div class="feat-name" data-lang="es">Registro</div>
+            <div class="feat-name" data-lang="en">Journal</div>
+            <p class="feat-desc" data-lang="es">Bitácora híbrida para pensamientos, fotos y momentos. Privada, almacenada localmente, sin sincronización.</p>
+            <p class="feat-desc" data-lang="en">A hybrid log for thoughts, photos, and moments. Private, stored locally, no syncing.</p>
+          </div>
+          <div class="feat-cell">
+            <div class="feat-screen">
+              <img src="assets/flint-feature-finances.png" alt="Finances feature screen" loading="lazy" />
+            </div>
+            <div class="feat-n">03 / Finances</div>
+            <div class="feat-name" data-lang="es">Control</div>
+            <div class="feat-name" data-lang="en">Control</div>
+            <p class="feat-desc" data-lang="es">Seguimiento de flujo de efectivo local. Sin banco, sin nube — solo claridad sobre tu dinero.</p>
+            <p class="feat-desc" data-lang="en">Local cash flow tracking. No bank, no cloud — just clarity on your money.</p>
           </div>
         </div>
       </section>
 
-      <section class="section" id="roadmap" aria-labelledby="roadmap-title">
-        <h2 class="section-title" id="roadmap-title">Próximamente</h2>
-        <p>Flint está empezando. La versión 1.0 se centra en resolver bien una cosa: ayudarte a organizar tu día. Más
-          adelante, la idea es explorar nuevas funciones, llevar la app a Android y seguir mejorando la experiencia sin
-          perder la simplicidad.</p>
-        <ul>
-          <li>Mejoras en la experiencia de grupos y tareas aplazadas.</li>
-          <li>Versión para Android.</li>
-          <li>Pequeños detalles de diseño y accesibilidad.</li>
-        </ul>
-      </section>
-
-      <section class="section" id="privacy-policy" aria-labelledby="privacy-title">
-        <h2 class="section-title" id="privacy-title">Legal / Legal</h2>
-        <p class="note"><strong>Fecha de vigencia / Effective Date:</strong> 20 de febrero de 2026</p>
-        <p class="note">Aquí encontrarás nuestra Política de Privacidad y Términos de Uso. / Here you will find our
-          Privacy Policy and Terms of Use.</p>
-
-        <section class="tabs" aria-label="Documentos legales / Legal documents">
-          <div class="tabs-header">
-            <button id="tab-es-btn" class="tab-button" type="button" data-active="true" onclick="switchTab('es')">
-              <span>Español</span>
-            </button>
-            <button id="tab-en-btn" class="tab-button" type="button" data-active="false" onclick="switchTab('en')">
-              <span>English</span>
-            </button>
+      <!-- VALUES -->
+      <section class="section section-bordered">
+        <div class="reveal">
+          <p class="eyebrow" data-lang="es">Filosofía</p>
+          <p class="eyebrow" data-lang="en">Philosophy</p>
+          <h2 class="s-title" data-lang="es">Construido <em>diferente.</em></h2>
+          <h2 class="s-title" data-lang="en">Built <em>differently.</em></h2>
+        </div>
+        <div class="vals-grid reveal d1">
+          <div class="val-cell">
+            <div class="val-n">01</div>
+            <div class="val-title" data-lang="es">Sin suscripciones</div>
+            <div class="val-title" data-lang="en">No subscriptions</div>
+            <p class="val-desc" data-lang="es">Paga una vez, úsala para siempre. Flint Pro es una licencia perpetua — tuya, sin fecha de vencimiento.</p>
+            <p class="val-desc" data-lang="en">Pay once, use forever. Flint Pro is a lifetime license — yours, with no expiration date.</p>
           </div>
-
-          <div
-            style="padding: 12px 22px; border-bottom: 1px solid var(--border); background: #fafafa; font-size: 14px; text-align: center;">
-            <a href="#privacy" style="font-weight: 600; text-decoration: none;">Ir a Política de Privacidad</a> |
-            <a href="#terms" style="font-weight: 600; text-decoration: none;">Ir a Términos de Uso</a>
+          <div class="val-cell">
+            <div class="val-n">02</div>
+            <div class="val-title" data-lang="es">Privacidad primero</div>
+            <div class="val-title" data-lang="en">Privacy first</div>
+            <p class="val-desc" data-lang="es">Tus tareas, pensamientos y finanzas viven en tu dispositivo. No en la nube, no en servidores.</p>
+            <p class="val-desc" data-lang="en">Your tasks, thoughts, and finances live on your device. Not in the cloud, not on servers.</p>
           </div>
-
-          <!-- Spanish tab -->
-          <article id="tab-es" class="tab-content" data-active="true" lang="es"
-            aria-label="Documentos legales en español">
-
-            <div id="privacy">
-              <h2>A. Política de Privacidad</h2>
-              <p>Flint se preocupa por tu privacidad. Nuestra aplicación está diseñada para ser minimalista y
-                transparente respecto al uso de tu información.</p>
-
-              <h3>1. Datos Personales</h3>
-              <p>No recolectamos Información de Identificación Personal (PII) como nombres, apellidos, direcciones
-                físicas o correos electrónicos. La aplicación no requiere la creación de una cuenta de usuario para
-                funcionar.</p>
-
-              <h3>2. Servicios de Terceros y Compras</h3>
-              <p>Para gestionar las licencias permanentes de Flint Pro y los Códigos de Regalo, utilizamos servicios de
-                terceros de confianza:</p>
-              <ul>
-                <li><strong>RevenueCat:</strong> Utilizamos RevenueCat para procesar las compras dentro de la
-                  aplicación. RevenueCat maneja los recibos de compra de Apple para verificar el estado de tus
-                  licencias.</li>
-                <li><strong>Google Firebase Realtime Database:</strong> Utilizamos Firebase de Google como
-                  almacenamiento en la nube estrictamente para gestionar y validar la emisión y canje de Códigos de
-                  Regalo.</li>
-              </ul>
-
-              <h3>3. Identificadores Anónimos</h3>
-              <p>Para poder vincular tus compras y licencias permanentes de forma segura, recolectamos o generamos
-                identificadores anónimos en tu dispositivo (como <code>deviceId</code> o <code>App User ID</code>).
-                Estos identificadores se utilizan estrictamente para propósitos de verificación de licencias y
-                sincronización del estado de Flint Pro a través de los servicios mencionados, sin estar vinculados a tu
-                identidad real.</p>
-            </div>
-
-            <hr style="margin: 40px 0; border: none; border-top: 1px solid var(--border);" />
-
-            <div id="terms">
-              <h2>B. Términos de Uso / EULA</h2>
-              <p>Al descargar o usar Flint, aceptas los siguientes términos de uso. Si no estás de acuerdo con estos
-                términos, no utilices la aplicación.</p>
-
-              <h3>1. Licencia</h3>
-              <p>Flint es una aplicación que se licencia, no se vende. Tu uso de Flint está sujeto al Contrato de
-                Licencia de Usuario Final para Aplicaciones Licenciadas (EULA Estándar de Apple). Puedes leer el EULA
-                completo en el siguiente enlace: <br /> <a
-                  href="https://www.apple.com/legal/internet-services/itunes/dev/stdeula/" target="_blank"
-                  rel="noopener noreferrer">https://www.apple.com/legal/internet-services/itunes/dev/stdeula/</a>.</p>
-
-              <h3>2. Compras y Reembolsos</h3>
-              <p>Flint ofrece licencias "Premium de por vida" (Flint Pro), no suscripciones. Al adquirir Flint Pro,
-                obtienes un acceso permanente a las funciones premium detalladas en la aplicación. Todas las compras son
-                procesadas por Apple. Cualquier solicitud o gestión de reembolso debe realizarse y gestionarse
-                directamente con Apple de acuerdo a sus políticas.</p>
-
-              <h3>3. Política Antifraude (Códigos de Regalo)</h3>
-              <p>Los Códigos de Regalo adquiridos a través de la aplicación no tienen valor monetario, no son canjeables
-                por dinero en efectivo, y está estrictamente prohibida su reventa o intercambio comercial. Cualquier
-                abuso, reventa, o actividad que viole esta condición resultará en la revocación (ban) automática y
-                permanente de la licencia asociada, sin derecho a reembolso.</p>
-
-              <h3>4. Renuncia de Garantías</h3>
-              <p>La aplicación Flint se proporciona "tal cual" (as is) y según disponibilidad. El desarrollador no
-                ofrece garantías de ningún tipo y renuncia explícitamente a cualquier responsabilidad por la pérdida de
-                datos, fallos en la aplicación, interrupciones del servicio o daños resultantes del uso de la
-                aplicación. Tu información (tareas, configuraciones) se almacena localmente y es tu responsabilidad su
-                respaldo.</p>
-            </div>
-
-          </article>
-
-          <!-- English tab -->
-          <article id="tab-en" class="tab-content" data-active="false" lang="en"
-            aria-label="Legal documents in English">
-
-            <div id="privacy">
-              <h2>A. Privacy Policy</h2>
-              <p>Flint cares about your privacy. Our application is designed to be minimal and transparent regarding the
-                use of your information.</p>
-
-              <h3>1. Personal Data</h3>
-              <p>We do not collect Personally Identifiable Information (PII) such as names, last names, physical
-                addresses, or emails. The app does not require creating a user account to function.</p>
-
-              <h3>2. Third-Party Services and Purchases</h3>
-              <p>To manage the permanent licenses of Flint Pro and Gift Codes, we use trusted third-party services:</p>
-              <ul>
-                <li><strong>RevenueCat:</strong> We use RevenueCat to process in-app purchases. RevenueCat handles Apple
-                  purchase receipts to verify the status of your licenses.</li>
-                <li><strong>Google Firebase Realtime Database:</strong> We use Google's Firebase as cloud storage
-                  strictly to manage and validate the issuance and redemption of Gift Codes.</li>
-              </ul>
-
-              <h3>3. Anonymous Identifiers</h3>
-              <p>To securely link your purchases and permanent licenses, we collect or generate anonymous identifiers on
-                your device (such as <code>deviceId</code> or <code>App User ID</code>). These identifiers are used
-                strictly for license verification purposes and synchronizing the Flint Pro status through the
-                aforementioned services, without being tied to your real identity.</p>
-            </div>
-
-            <hr style="margin: 40px 0; border: none; border-top: 1px solid var(--border);" />
-
-            <div id="terms">
-              <h2>B. Terms of Use / EULA</h2>
-              <p>By downloading or using Flint, you agree to these terms of use. If you do not agree to these terms, do
-                not use the app.</p>
-
-              <h3>1. License</h3>
-              <p>Flint is licensed, not sold, to you. Your use of Flint is subject to the Apple Standard End User
-                License Agreement (Standard EULA). You can read the full EULA at the exact link: <br /> <a
-                  href="https://www.apple.com/legal/internet-services/itunes/dev/stdeula/" target="_blank"
-                  rel="noopener noreferrer">https://www.apple.com/legal/internet-services/itunes/dev/stdeula/</a>.</p>
-
-              <h3>2. Purchases and Refunds</h3>
-              <p>Flint offers "Lifetime Premium" licenses (Flint Pro), not subscriptions. By purchasing Flint Pro, you
-                gain permanent access to the premium features detailed in the app. All purchases are processed by Apple.
-                Any refund requests must be handled directly with Apple in accordance with their policies.</p>
-
-              <h3>3. Anti-Fraud Policy (Gift Codes)</h3>
-              <p>Gift Codes purchased through the app have no monetary value, cannot be redeemed for cash, and their
-                resale or commercial exchange is strictly prohibited. Any abuse, resale, or activity that violates this
-                condition will result in the automatic and permanent revocation (ban) of the associated license, without
-                the right to a refund.</p>
-
-              <h3>4. Disclaimer of Warranties</h3>
-              <p>The Flint app is provided "as is" and as available. The developer makes no warranties of any kind and
-                explicitly disclaims any liability for data loss, app failures, service interruptions, or damages
-                resulting from the use of the app. Your information (tasks, settings) is stored locally, and it is your
-                responsibility to back it up.</p>
-            </div>
-
-          </article>
-        </section>
+          <div class="val-cell">
+            <div class="val-n">03</div>
+            <div class="val-title" data-lang="es">Sin fricción</div>
+            <div class="val-title" data-lang="en">No friction</div>
+            <p class="val-desc" data-lang="es">Inspirada en el diseño de Apple: blanco y negro, sin notificaciones innecesarias. Abre, registra, cierra.</p>
+            <p class="val-desc" data-lang="en">Inspired by Apple design: black and white, no unnecessary notifications. Open, log, close.</p>
+          </div>
+          <div class="val-cell">
+            <div class="val-n">04</div>
+            <div class="val-title" data-lang="es">Construida por uno</div>
+            <div class="val-title" data-lang="en">Built by one</div>
+            <p class="val-desc" data-lang="es">Diseñada, desarrollada y mantenida por Joaquín Álvarez Mercado, 17, Ciudad Acuña, México. 120+ builds desde el primer día.</p>
+            <p class="val-desc" data-lang="en">Designed, developed, and maintained by Joaquín Álvarez Mercado, 17, Ciudad Acuña, México. 120+ builds since day one.</p>
+          </div>
+        </div>
       </section>
 
-      <section class="section" id="contacto" aria-labelledby="contacto-title">
-        <h2 class="section-title" id="contacto-title">Contacto</h2>
-        <p>Si encontraste un error, tienes una sugerencia o solo quieres contar cómo usas Flint, puedes escribir
-          directamente al desarrollador:</p>
-        <ul class="data-list">
-          <li>Nombre: Joaquín Álvarez Mercado.</li>
-          <li>Correo de soporte: <a href="mailto:joaquinalvarezme@gmail.com">joaquinalvarezme@gmail.com</a>.</li>
-        </ul>
+      <!-- LEGAL -->
+      <section class="section section-bordered" id="legal">
+        <div class="reveal">
+          <p class="eyebrow" data-lang="es">Legal</p>
+          <p class="eyebrow" data-lang="en">Legal</p>
+          <h2 class="s-title" data-lang="es">Privacidad y <em>Términos.</em></h2>
+          <h2 class="s-title" data-lang="en">Privacy <em>&amp; Terms.</em></h2>
+          <p style="font-size:12px;color:var(--muted);margin-bottom:36px;font-family:var(--mono);" data-lang="es">Fecha de vigencia: 23 de enero de 2025</p>
+          <p style="font-size:12px;color:var(--muted);margin-bottom:36px;font-family:var(--mono);" data-lang="en">Effective Date: January 23, 2025</p>
+        </div>
+        <div class="legal-tabs">
+          <button class="ltab-btn active" id="ltab-es" onclick="switchLegal('es')">Español</button>
+          <button class="ltab-btn" id="ltab-en" onclick="switchLegal('en')">English</button>
+        </div>
+        <div class="ltab-content active legal-body" id="legal-es">
+          <h2>A. Política de Privacidad</h2>
+          <p>Flint se preocupa por tu privacidad. Nuestra aplicación está diseñada para ser minimalista y
+            transparente respecto al uso de tu información.</p>
+
+          <h3>1. Datos Personales</h3>
+          <p>No recolectamos Información de Identificación Personal (PII) como nombres, apellidos, direcciones
+            físicas o correos electrónicos. La aplicación no requiere la creación de una cuenta de usuario para
+            funcionar.</p>
+
+          <h3>2. Servicios de Terceros y Compras</h3>
+          <p>Para gestionar las licencias permanentes de Flint Pro y los Códigos de Regalo, utilizamos servicios de
+            terceros de confianza:</p>
+          <ul>
+            <li><strong>RevenueCat:</strong> Utilizamos RevenueCat para procesar las compras dentro de la
+              aplicación. RevenueCat maneja los recibos de compra de Apple para verificar el estado de tus
+              licencias.</li>
+            <li><strong>Google Firebase Realtime Database:</strong> Utilizamos Firebase de Google como
+              almacenamiento en la nube estrictamente para gestionar y validar la emisión y canje de Códigos de
+              Regalo.</li>
+          </ul>
+
+          <h3>3. Identificadores Anónimos</h3>
+          <p>Para poder vincular tus compras y licencias permanentes de forma segura, recolectamos o generamos
+            identificadores anónimos en tu dispositivo (como <code>deviceId</code> o <code>App User ID</code>).
+            Estos identificadores se utilizan estrictamente para propósitos de verificación de licencias y
+            sincronización del estado de Flint Pro a través de los servicios mencionados, sin estar vinculados a tu
+            identidad real.</p>
+          <hr class="legal-hr"/>
+          <h2>B. Términos de Uso / EULA</h2>
+          <p>Al descargar o usar Flint, aceptas los siguientes términos de uso.</p>
+          <h3>1. Licencia</h3>
+          <p>Flint se licencia, no se vende. Tu uso está sujeto al EULA Estándar de Apple: <a href="https://www.apple.com/legal/internet-services/itunes/dev/stdeula/" target="_blank" rel="noopener">apple.com/legal/…/stdeula</a></p>
+          <h3>2. Compras y Reembolsos</h3>
+          <p>Flint ofrece licencias "Premium de por vida" (Flint Pro), no suscripciones. Todas las compras son procesadas por Apple.</p>
+          <h3>3. Política Antifraude (Códigos de Regalo)</h3>
+          <p>Los Códigos de Regalo no tienen valor monetario y está prohibida su reventa. Cualquier abuso resultará en la revocación automática de la licencia.</p>
+          <h3>4. Renuncia de Garantías</h3>
+          <p>La aplicación se proporciona "tal cual". Tu información se almacena localmente y es tu responsabilidad su respaldo.</p>
+        </div>
+        <div class="ltab-content legal-body" id="legal-en">
+          <h2>A. Privacy Policy</h2>
+          <p>Flint cares about your privacy. Our application is designed to be minimal and transparent regarding the
+            use of your information.</p>
+
+          <h3>1. Personal Data</h3>
+          <p>We do not collect Personally Identifiable Information (PII) such as names, last names, physical
+            addresses, or emails. The app does not require creating a user account to function.</p>
+
+          <h3>2. Third-Party Services and Purchases</h3>
+          <p>To manage the permanent licenses of Flint Pro and Gift Codes, we use trusted third-party services:</p>
+          <ul>
+            <li><strong>RevenueCat:</strong> We use RevenueCat to process in-app purchases. RevenueCat handles Apple
+              purchase receipts to verify the status of your licenses.</li>
+            <li><strong>Google Firebase Realtime Database:</strong> We use Google's Firebase as cloud storage
+              strictly to manage and validate the issuance and redemption of Gift Codes.</li>
+          </ul>
+
+          <h3>3. Anonymous Identifiers</h3>
+          <p>To securely link your purchases and permanent licenses, we collect or generate anonymous identifiers on
+            your device (such as <code>deviceId</code> or <code>App User ID</code>). These identifiers are used
+            strictly for license verification purposes and synchronizing the Flint Pro status through the
+            aforementioned services, without being tied to your real identity.</p>
+          <hr class="legal-hr"/>
+          <h2>B. Terms of Use / EULA</h2>
+          <p>By downloading or using Flint, you agree to these terms.</p>
+          <h3>1. License</h3>
+          <p>Flint is licensed, not sold. Your use is subject to Apple's Standard EULA: <a href="https://www.apple.com/legal/internet-services/itunes/dev/stdeula/" target="_blank" rel="noopener">apple.com/legal/…/stdeula</a></p>
+          <h3>2. Purchases and Refunds</h3>
+          <p>Flint offers lifetime licenses (Flint Pro), not subscriptions. All purchases are processed by Apple.</p>
+          <h3>3. Anti-Fraud Policy (Gift Codes)</h3>
+          <p>Gift Codes have no monetary value and their resale is strictly prohibited. Any abuse results in automatic license revocation.</p>
+          <h3>4. Disclaimer of Warranties</h3>
+          <p>The app is provided "as is". Your information is stored locally, and it is your responsibility to back it up.</p>
+        </div>
       </section>
 
-      <footer class="footer">
-        <span>© 2025 Flint · Joaquín Álvarez Mercado</span>
-        <span>Esta página es estática, en blanco y negro, y no utiliza cookies ni seguimiento.</span>
+      <!-- CONTACT -->
+      <section class="section section-bordered reveal" id="contacto">
+        <div class="contact-box">
+          <div>
+            <h2 class="contact-h" data-lang="es">¿Tienes algo<br><em>que decir?</em></h2>
+            <h2 class="contact-h" data-lang="en">Have something<br><em>to say?</em></h2>
+            <p class="contact-sub" data-lang="es">Errores, sugerencias, o solo cómo usas Flint. Escribe directo al desarrollador.</p>
+            <p class="contact-sub" data-lang="en">Bugs, suggestions, or just how you use Flint. Write directly to the developer.</p>
+          </div>
+          <div class="contact-r">
+            <div class="contact-email">joaquinalvarezme@gmail.com</div>
+            <a href="mailto:joaquinalvarezme@gmail.com" class="btn-white">
+              <span data-lang="es">Escribir</span>
+              <span data-lang="en">Write</span>
+              →
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <!-- FOOTER -->
+      <footer>
+        <div class="footer-logo">Flint<em>.</em></div>
+        <div class="footer-note" data-lang="es">© 2025 Joaquín Álvarez Mercado · Ciudad Acuña, México<br>Página estática · Sin cookies · Sin seguimiento</div>
+        <div class="footer-note" data-lang="en">© 2025 Joaquín Álvarez Mercado · Ciudad Acuña, México<br>Static page · No cookies · No tracking</div>
       </footer>
+
     </div>
   </div>
 
   <script>
-    document.querySelectorAll('[data-scroll]').forEach(function (btn) {
-      btn.addEventListener('click', function () {
-        var target = document.getElementById(btn.dataset.scroll);
-        if (target) target.scrollIntoView({ behavior: 'smooth' });
+    /* CURSOR (desktop only) */
+    var cur = document.getElementById('cur');
+    var ring = document.getElementById('ring');
+    var prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var finePointer = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+    var enableCursor = finePointer && !prefersReduced;
+    if (enableCursor) {
+      document.documentElement.classList.add('has-cursor');
+      var mx = 0, my = 0, rx = 0, ry = 0;
+      document.addEventListener('mousemove', function(e) {
+        mx = e.clientX; my = e.clientY;
+        cur.style.left = mx + 'px'; cur.style.top = my + 'px';
       });
-    });
-
-
-    function switchTab(lang) {
-      var esBtn = document.getElementById('tab-es-btn');
-      var enBtn = document.getElementById('tab-en-btn');
-      var esTab = document.getElementById('tab-es');
-      var enTab = document.getElementById('tab-en');
-
-      if (!esBtn || !enBtn || !esTab || !enTab) return;
-
-      var isEs = lang === 'es';
-
-      esBtn.dataset.active = isEs ? 'true' : 'false';
-      enBtn.dataset.active = !isEs ? 'true' : 'false';
-      esTab.dataset.active = isEs ? 'true' : 'false';
-      enTab.dataset.active = !isEs ? 'true' : 'false';
+      (function tick() {
+        rx += (mx - rx) * 0.12; ry += (my - ry) * 0.12;
+        ring.style.left = rx + 'px'; ring.style.top = ry + 'px';
+        requestAnimationFrame(tick);
+      })();
+      document.querySelectorAll('a,button').forEach(function(el) {
+        el.addEventListener('mouseenter', function() { ring.classList.add('hover'); });
+        el.addEventListener('mouseleave', function() { ring.classList.remove('hover'); });
+      });
+    } else {
+      cur.style.display = 'none';
+      ring.style.display = 'none';
     }
 
-    function toggleAccordion(button) {
-      var open = button.getAttribute('data-open') === 'true';
-      var body = button.nextElementSibling;
-      if (!body) return;
-      if (open) {
-        button.setAttribute('data-open', 'false');
-        body.style.maxHeight = '0px';
-      } else {
-        button.setAttribute('data-open', 'true');
-        body.style.maxHeight = body.scrollHeight + 'px';
-      }
+    /* SCROLL REVEAL */
+    var revealEls = document.querySelectorAll('.reveal');
+    if (prefersReduced || !('IntersectionObserver' in window)) {
+      revealEls.forEach(function(el) { el.classList.add('on'); });
+    } else {
+      var io = new IntersectionObserver(function(entries) {
+        entries.forEach(function(e) {
+          if (e.isIntersecting) { e.target.classList.add('on'); io.unobserve(e.target); }
+        });
+      }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+      revealEls.forEach(function(el) { io.observe(el); });
     }
 
-    window.addEventListener('load', function () {
-      document.querySelectorAll('.accordion-body').forEach(function (body) {
-        body.style.maxHeight = '0px';
-      });
-    });
+    /* LANG */
+    function setLang(lang) {
+      document.documentElement.lang = lang;
+      document.documentElement.classList.toggle('lang-es', lang === 'es');
+      document.documentElement.classList.toggle('lang-en', lang === 'en');
+      document.getElementById('btn-es').classList.toggle('active', lang === 'es');
+      document.getElementById('btn-en').classList.toggle('active', lang === 'en');
+    }
+
+    /* LEGAL TABS */
+    function switchLegal(lang) {
+      document.querySelectorAll('.ltab-content').forEach(function(t) { t.classList.remove('active'); });
+      document.querySelectorAll('.ltab-btn').forEach(function(b) { b.classList.remove('active'); });
+      document.getElementById('legal-' + lang).classList.add('active');
+      document.getElementById('ltab-' + lang).classList.add('active');
+    }
+
+    setLang('es');
   </script>
 </body>
-
 </html>
