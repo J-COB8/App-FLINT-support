@@ -3,8 +3,13 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Flint — A Personal Clarity System</title>
-  <meta name="description" content="Flint is a minimal iOS productivity app. Tasks, Journal, and Finances — all private, all yours." />
+  <title>Paratu — A Personal Clarity System</title>
+  <meta name="description" content="Paratu is a minimal iOS productivity app. Tasks, Journal, and Finances — free, all private, all yours." />
+  <meta name="theme-color" content="#ffffff" />
+  <meta property="og:title" content="Paratu — A Personal Clarity System" />
+  <meta property="og:description" content="A minimal, free iOS productivity app. Tasks, Journal, and Finances — all private, all yours." />
+  <meta property="og:type" content="website" />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='22' fill='%230c0c0b'/%3E%3Ctext x='50' y='70' font-family='Helvetica, Arial, sans-serif' font-size='56' font-weight='bold' fill='%23ffffff' text-anchor='middle'%3EP%3C/text%3E%3C/svg%3E" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Geist+Mono:wght@300;400;500&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&family=IBM+Plex+Sans:wght@600;700&display=swap" rel="stylesheet" />
   <style>
@@ -16,7 +21,7 @@
       --light: #b0b0ab;
       --lighter: #f2f2ef;
       --serif: 'Instrument Serif', Georgia, serif;
-      --flint: 'IBM Plex Sans', 'DM Sans', sans-serif;
+      --paratu: 'IBM Plex Sans', 'DM Sans', sans-serif;
       --mono: 'Geist Mono', monospace;
       --sans: 'DM Sans', sans-serif;
       --r: 14px;
@@ -80,7 +85,7 @@
       border-bottom: 1px solid var(--lighter);
     }
     .nav-logo {
-      font-family: var(--flint); font-size: 22px; font-weight: 700;
+      font-family: var(--paratu); font-size: 22px; font-weight: 700;
       letter-spacing: -0.03em; color: var(--ink); text-decoration: none;
     }
     .nav-logo em { font-style: italic; color: var(--muted); }
@@ -123,7 +128,6 @@
       font-size: clamp(180px, 26vw, 360px);
       color: transparent;
       -webkit-text-stroke: 1px rgba(12,12,11,0.1);
-      color: transparent;
       white-space: nowrap; pointer-events: none;
       user-select: none; z-index: 0;
       opacity: 0;
@@ -139,8 +143,10 @@
       gap: 60px; align-items: center;
     }
     @media (max-width: 720px) {
-      .hero-inner { grid-template-columns: 1fr; }
-      .hero-phone { display: none; }
+      .hero { min-height: 0; padding: 80px 0 60px; }
+      .hero-inner { grid-template-columns: 1fr; gap: 56px; }
+      .hero-phone { display: flex; justify-content: center; }
+      .phone-wrap { width: min(270px, 78%); }
     }
     .hero-eyebrow {
       display: inline-flex; align-items: center; gap: 10px;
@@ -153,7 +159,7 @@
       content: ''; width: 20px; height: 1px; background: var(--light);
     }
     .hero-title {
-      font-family: var(--flint);
+      font-family: var(--paratu);
       font-size: clamp(64px, 9vw, 112px);
       font-weight: 700; line-height: 0.9;
       letter-spacing: -0.03em; margin-bottom: 32px;
@@ -165,6 +171,7 @@
       max-width: 420px; margin-bottom: 44px; font-weight: 400;
       opacity: 0; animation: up 0.7s 0.26s ease both;
     }
+    .hero-desc strong { color: var(--ink); font-weight: 500; }
     .hero-actions {
       display: flex; align-items: center; gap: 14px; flex-wrap: wrap;
       opacity: 0; animation: up 0.7s 0.34s ease both;
@@ -215,8 +222,8 @@
       to { opacity: 1; transform: translateY(0) rotate(0deg); }
     }
     .phone-wrap {
-      width: 230px; height: 460px;
-      background: var(--off); border-radius: 44px;
+      width: 250px; aspect-ratio: 1242 / 2688; height: auto;
+      background: var(--off); border-radius: 32px;
       border: 1px solid var(--light);
       box-shadow: 0 40px 100px rgba(12,12,11,0.09), 0 0 0 1px var(--lighter);
       overflow: hidden;
@@ -313,7 +320,7 @@
     }
     .feat-cell:hover { background: var(--off); transform: translateY(-4px); box-shadow: 0 18px 40px rgba(12,12,11,0.06); }
     .feat-screen {
-      width: 100%; aspect-ratio: 9/16;
+      width: 100%; aspect-ratio: 1242 / 2688;
       background: var(--off); border-radius: 18px;
       border: 1px solid var(--lighter); overflow: hidden;
       margin-bottom: 28px; display: flex; flex-direction: column;
@@ -326,14 +333,9 @@
     .feat-cell:hover .feat-screen { border-color: var(--light); }
     .feat-screen svg { width: 18px; height: 18px; opacity: 0.5; }
     .feat-screen .note { font-size: 11px; color: #888883; line-height: 1.5; max-width: 140px; }
-    .feat-screen img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 20%; }
+    .feat-screen img { width: 100%; height: 100%; object-fit: cover; }
     .feat-n { font-family: var(--mono); font-size: 11px; color: #999994; letter-spacing: 0.1em; margin-bottom: 10px; }
-    .feat-name { font-family: var(--serif); font-size: 22px; font-weight: 400; margin-bottom: 8px; letter-spacing: -0.01em; }
-    .feat-name em { font-style: italic; color: var(--muted); }
-    .feat-desc { font-size: 13px; color: var(--muted); line-height: 1.7; font-weight: 400; }
-    @media (max-width: 720px) {
-      .feat-desc { font-size: 15px; }
-    }
+    .feat-name { font-family: var(--paratu); font-size: 21px; font-weight: 700; margin-bottom: 8px; letter-spacing: -0.02em; }
 
     /* STRIP */
     .strip {
@@ -356,25 +358,6 @@
     .strip-slot:hover { transform: translateY(-8px) !important; box-shadow: 0 24px 60px rgba(12,12,11,0.09); }
     .strip-slot svg { width: 16px; height: 16px; opacity: 0.3; }
     .strip-slot img { width: 100%; height: 100%; object-fit: cover; }
-
-    /* VALUES */
-    .vals-grid {
-      display: grid; grid-template-columns: repeat(2, 1fr);
-      gap: 1px; background: var(--lighter);
-      border-radius: var(--r); overflow: hidden;
-    }
-    @media (max-width: 580px) { .vals-grid { grid-template-columns: 1fr; } }
-    .val-cell {
-      background: var(--white); padding: 44px 36px;
-      transition: background 220ms ease, transform 220ms ease, box-shadow 220ms ease;
-    }
-    .val-cell:hover { background: var(--off); transform: translateY(-4px); box-shadow: 0 18px 40px rgba(12,12,11,0.06); }
-    .val-n { font-family: var(--mono); font-size: 11px; color: #999994; letter-spacing: 0.12em; margin-bottom: 18px; }
-    .val-title { font-family: var(--serif); font-size: 22px; font-weight: 400; margin-bottom: 12px; letter-spacing: -0.01em; }
-    .val-desc { font-size: 14px; color: var(--muted); line-height: 1.7; font-weight: 400; }
-    @media (max-width: 720px) {
-      .val-desc { font-size: 16px; }
-    }
 
     /* LEGAL */
     .legal-tabs {
@@ -438,7 +421,7 @@
       display: flex; justify-content: space-between;
       align-items: center; flex-wrap: wrap; gap: 12px;
     }
-    .footer-logo { font-family: var(--flint); font-size: 22px; font-weight: 700; letter-spacing: -0.03em; }
+    .footer-logo { font-family: var(--paratu); font-size: 22px; font-weight: 700; letter-spacing: -0.03em; }
     .footer-logo em { font-style: italic; color: var(--muted); }
     .footer-note { font-family: var(--mono); font-size: 11px; color: #999994; text-align: right; line-height: 1.7; }
 
@@ -467,6 +450,11 @@
     @media (prefers-reduced-motion: reduce) {
       html { scroll-behavior: auto; }
       * { animation: none !important; transition: none !important; }
+      .hero-bg-word, .hero-eyebrow, .hero-title, .hero-desc,
+      .hero-actions, .hero-stats, .hero-phone, .reveal {
+        opacity: 1 !important; transform: none !important;
+      }
+      .hero-bg-word { transform: translate(-50%, -50%) !important; }
     }
 
     /* TOUCH / COARSE POINTER */
@@ -491,13 +479,13 @@
 
   <!-- NAV -->
   <nav>
-    <a href="#" class="nav-logo">Flint<em>.</em></a>
+    <a href="#" class="nav-logo">Paratu<em>.</em></a>
     <div class="nav-right">
       <div class="lang-toggle">
         <button class="lang-btn active" id="btn-es" onclick="setLang('es')">ES</button>
         <button class="lang-btn" id="btn-en" onclick="setLang('en')">EN</button>
       </div>
-      <a href="https://apps.apple.com/mx/app/flint/id6748326474?l=en-GB" target="_blank" rel="noopener" class="nav-cta">
+      <a href="https://apps.apple.com/mx/app/paratu/id6748326474?l=en-GB" target="_blank" rel="noopener" class="nav-cta">
         <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
         <span data-lang="es">Descargar</span>
         <span data-lang="en">Download</span>
@@ -517,11 +505,11 @@
               <span data-lang="es">Sistema de Claridad Personal — iOS</span>
               <span data-lang="en">A Personal Clarity System — iOS</span>
             </p>
-            <h1 class="hero-title">Flint<em>.</em></h1>
-            <p class="hero-desc" data-lang="es">Una app de tareas minimalista para iOS. Sin suscripciones, sin nube, sin distracciones. Tus datos son tuyos.</p>
-            <p class="hero-desc" data-lang="en">A minimal task app for iOS. No subscriptions, no cloud, no noise. Your data is yours.</p>
+            <h1 class="hero-title">Paratu<em>.</em></h1>
+            <p class="hero-desc" data-lang="es">Una app para organizar tus pendientes, capturar tus notas y controlar tus gastos. <strong>Y es gratis.</strong></p>
+            <p class="hero-desc" data-lang="en">An app to organize your to-dos, capture your notes, and track your spending. <strong>And it's free.</strong></p>
             <div class="hero-actions">
-              <a href="https://apps.apple.com/mx/app/flint/id6748326474?l=en-GB" target="_blank" rel="noopener" class="btn-primary">
+              <a href="https://apps.apple.com/mx/app/paratu/id6748326474?l=en-GB" target="_blank" rel="noopener" class="btn-primary">
                 <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
                 <span data-lang="es">Descargar en App Store</span>
                 <span data-lang="en">Download on App Store</span>
@@ -535,92 +523,44 @@
           <!-- PHONE -->
           <div class="hero-phone">
             <div class="phone-wrap">
-              <img src="assets/flint-hero-tasks.png" alt="Flint Tasks screen" loading="eager" />
+              <img src="assets/paratu-hero.png" alt="Paratu — Organiza tu día" loading="eager" />
             </div>
           </div>
         </div>
       </section>
 
       <!-- FEATURES -->
-      <section class="section section-bordered">
+      <section class="section section-bordered" id="areas">
         <div class="reveal">
           <p class="eyebrow" data-lang="es">Tres áreas</p>
           <p class="eyebrow" data-lang="en">Three areas</p>
           <h2 class="s-title" data-lang="es">Todo lo que necesitas.<br><em>Nada que no.</em></h2>
           <h2 class="s-title" data-lang="en">Everything you need.<br><em>Nothing you don't.</em></h2>
-          <p class="s-sub" data-lang="es">Diseñado bajo el principio de claridad sobre completitud. Flint no compite con apps complejas — las reemplaza.</p>
-          <p class="s-sub" data-lang="en">Designed on the principle of clarity over completeness. Flint doesn't compete with complex apps — it replaces them.</p>
+          <p class="s-sub" data-lang="es">Diseñado bajo el principio de claridad sobre completitud. Paratu no compite con apps complejas — las reemplaza.</p>
+          <p class="s-sub" data-lang="en">Designed on the principle of clarity over completeness. Paratu doesn't compete with complex apps — it replaces them.</p>
         </div>
         <div class="feat-grid reveal d1">
           <div class="feat-cell">
             <div class="feat-screen">
-              <img src="assets/flint-feature-tasks.png" alt="Tasks feature screen" loading="lazy" />
+              <img src="assets/paratu-feature-tasks.png" alt="Tasks feature screen" loading="lazy" />
             </div>
-            <div class="feat-n">01 / Tasks</div>
-            <div class="feat-name" data-lang="es">Enfoque</div>
-            <div class="feat-name" data-lang="en">Focus</div>
-            <p class="feat-desc" data-lang="es">Gestión dinámica con priorización forzada. Siempre sabes qué atacar primero, sin parálisis de decisión.</p>
-            <p class="feat-desc" data-lang="en">Dynamic management with forced prioritization. Always know what to tackle first, without decision paralysis.</p>
+            <div class="feat-n">01</div>
+            <div class="feat-name">Tasks</div>
           </div>
           <div class="feat-cell">
             <div class="feat-screen">
-              <img src="assets/flint-feature-journal.png" alt="Journal feature screen" loading="lazy" />
+              <img src="assets/paratu-feature-journal.png" alt="Journal feature screen" loading="lazy" />
             </div>
-            <div class="feat-n">02 / Journal</div>
-            <div class="feat-name" data-lang="es">Registro</div>
-            <div class="feat-name" data-lang="en">Journal</div>
-            <p class="feat-desc" data-lang="es">Bitácora híbrida para pensamientos, fotos y momentos. Privada, almacenada localmente, sin sincronización.</p>
-            <p class="feat-desc" data-lang="en">A hybrid log for thoughts, photos, and moments. Private, stored locally, no syncing.</p>
+            <div class="feat-n">02</div>
+            <div class="feat-name">Journal</div>
           </div>
           <div class="feat-cell">
             <div class="feat-screen">
-              <img src="assets/flint-feature-finances.png" alt="Finances feature screen" loading="lazy" />
+              <img src="assets/paratu-feature-finances.png" alt="Finances feature screen" loading="lazy" />
             </div>
-            <div class="feat-n">03 / Finances</div>
-            <div class="feat-name" data-lang="es">Control</div>
-            <div class="feat-name" data-lang="en">Control</div>
-            <p class="feat-desc" data-lang="es">Seguimiento de flujo de efectivo local. Sin banco, sin nube — solo claridad sobre tu dinero.</p>
-            <p class="feat-desc" data-lang="en">Local cash flow tracking. No bank, no cloud — just clarity on your money.</p>
-          </div>
-        </div>
-      </section>
-
-      <!-- VALUES -->
-      <section class="section section-bordered">
-        <div class="reveal">
-          <p class="eyebrow" data-lang="es">Filosofía</p>
-          <p class="eyebrow" data-lang="en">Philosophy</p>
-          <h2 class="s-title" data-lang="es">Construido <em>diferente.</em></h2>
-          <h2 class="s-title" data-lang="en">Built <em>differently.</em></h2>
-        </div>
-        <div class="vals-grid reveal d1">
-          <div class="val-cell">
-            <div class="val-n">01</div>
-            <div class="val-title" data-lang="es">Sin suscripciones</div>
-            <div class="val-title" data-lang="en">No subscriptions</div>
-            <p class="val-desc" data-lang="es">Paga una vez, úsala para siempre. Flint Pro es una licencia perpetua — tuya, sin fecha de vencimiento.</p>
-            <p class="val-desc" data-lang="en">Pay once, use forever. Flint Pro is a lifetime license — yours, with no expiration date.</p>
-          </div>
-          <div class="val-cell">
-            <div class="val-n">02</div>
-            <div class="val-title" data-lang="es">Privacidad primero</div>
-            <div class="val-title" data-lang="en">Privacy first</div>
-            <p class="val-desc" data-lang="es">Tus tareas, pensamientos y finanzas viven en tu dispositivo. No en la nube, no en servidores.</p>
-            <p class="val-desc" data-lang="en">Your tasks, thoughts, and finances live on your device. Not in the cloud, not on servers.</p>
-          </div>
-          <div class="val-cell">
-            <div class="val-n">03</div>
-            <div class="val-title" data-lang="es">Sin fricción</div>
-            <div class="val-title" data-lang="en">No friction</div>
-            <p class="val-desc" data-lang="es">Inspirada en el diseño de Apple: blanco y negro, sin notificaciones innecesarias. Abre, registra, cierra.</p>
-            <p class="val-desc" data-lang="en">Inspired by Apple design: black and white, no unnecessary notifications. Open, log, close.</p>
-          </div>
-          <div class="val-cell">
-            <div class="val-n">04</div>
-            <div class="val-title" data-lang="es">Construida por uno</div>
-            <div class="val-title" data-lang="en">Built by one</div>
-            <p class="val-desc" data-lang="es">Diseñada, desarrollada y mantenida por Joaquín Álvarez Mercado, 17, Ciudad Acuña, México. 120+ builds desde el primer día.</p>
-            <p class="val-desc" data-lang="en">Designed, developed, and maintained by Joaquín Álvarez Mercado, 17, Ciudad Acuña, México. 120+ builds since day one.</p>
+            <div class="feat-n">03</div>
+            <div class="feat-name" data-lang="es">Finanzas</div>
+            <div class="feat-name" data-lang="en">Finances</div>
           </div>
         </div>
       </section>
@@ -643,7 +583,7 @@
         </div>
         <div class="ltab-content active legal-body" id="legal-es">
           <h2 id="privacy-es">A. Política de Privacidad</h2>
-          <p>Flint se preocupa por tu privacidad. Nuestra aplicación está diseñada para ser minimalista y
+          <p>Paratu se preocupa por tu privacidad. Nuestra aplicación está diseñada para ser minimalista y
             transparente respecto al uso de tu información.</p>
 
           <h3>1. Datos Personales</h3>
@@ -651,69 +591,40 @@
             físicas o correos electrónicos. La aplicación no requiere la creación de una cuenta de usuario para
             funcionar.</p>
 
-          <h3>2. Servicios de Terceros y Compras</h3>
-          <p>Para gestionar las licencias permanentes de Flint Pro y los Códigos de Regalo, utilizamos servicios de
-            terceros de confianza:</p>
-          <ul>
-            <li><strong>RevenueCat:</strong> Utilizamos RevenueCat para procesar las compras dentro de la
-              aplicación. RevenueCat maneja los recibos de compra de Apple para verificar el estado de tus
-              licencias.</li>
-            <li><strong>Google Firebase Realtime Database:</strong> Utilizamos Firebase de Google como
-              almacenamiento en la nube estrictamente para gestionar y validar la emisión y canje de Códigos de
-              Regalo.</li>
-          </ul>
-
-          <h3>3. Identificadores Anónimos</h3>
-          <p>Para poder vincular tus compras y licencias permanentes de forma segura, recolectamos o generamos
-            identificadores anónimos en tu dispositivo (como <code>deviceId</code> o <code>App User ID</code>).
-            Estos identificadores se utilizan estrictamente para propósitos de verificación de licencias y
-            sincronización del estado de Flint Pro a través de los servicios mencionados, sin estar vinculados a tu
-            identidad real.</p>
+          <h3>2. Almacenamiento Local</h3>
+          <p>Tus tareas, entradas del journal y registros financieros se almacenan localmente en tu dispositivo.
+            No se envían a servidores nuestros ni de terceros, y no utilizamos servicios de análisis ni de
+            seguimiento.</p>
           <hr class="legal-hr"/>
           <h2 id="terms-es">B. Términos de Uso / EULA</h2>
-          <p>Al descargar o usar Flint, aceptas los siguientes términos de uso.</p>
+          <p>Al descargar o usar Paratu, aceptas los siguientes términos de uso.</p>
           <h3>1. Licencia</h3>
-          <p>Flint se licencia, no se vende. Tu uso está sujeto al EULA Estándar de Apple: <a href="https://www.apple.com/legal/internet-services/itunes/dev/stdeula/" target="_blank" rel="noopener">apple.com/legal/…/stdeula</a></p>
+          <p>Paratu se licencia, no se vende. Tu uso está sujeto al EULA Estándar de Apple: <a href="https://www.apple.com/legal/internet-services/itunes/dev/stdeula/" target="_blank" rel="noopener">apple.com/legal/…/stdeula</a></p>
           <h3>2. Compras y Reembolsos</h3>
-          <p>Flint ofrece licencias "Premium de por vida" (Flint Pro), no suscripciones. Todas las compras son procesadas por Apple.</p>
-          <h3>3. Política Antifraude (Códigos de Regalo)</h3>
-          <p>Los Códigos de Regalo no tienen valor monetario y está prohibida su reventa. Cualquier abuso resultará en la revocación automática de la licencia.</p>
-          <h3>4. Renuncia de Garantías</h3>
+          <p>Paratu es actualmente gratuita y no requiere ninguna compra para acceder a sus funciones. Si en el futuro se ofrecen compras dentro de la aplicación, serán procesadas por Apple.</p>
+          <h3>3. Renuncia de Garantías</h3>
           <p>La aplicación se proporciona "tal cual". Tu información se almacena localmente y es tu responsabilidad su respaldo.</p>
         </div>
         <div class="ltab-content legal-body" id="legal-en">
           <h2 id="privacy-en">A. Privacy Policy</h2>
-          <p>Flint cares about your privacy. Our application is designed to be minimal and transparent regarding the
+          <p>Paratu cares about your privacy. Our application is designed to be minimal and transparent regarding the
             use of your information.</p>
 
           <h3>1. Personal Data</h3>
           <p>We do not collect Personally Identifiable Information (PII) such as names, last names, physical
             addresses, or emails. The app does not require creating a user account to function.</p>
 
-          <h3>2. Third-Party Services and Purchases</h3>
-          <p>To manage the permanent licenses of Flint Pro and Gift Codes, we use trusted third-party services:</p>
-          <ul>
-            <li><strong>RevenueCat:</strong> We use RevenueCat to process in-app purchases. RevenueCat handles Apple
-              purchase receipts to verify the status of your licenses.</li>
-            <li><strong>Google Firebase Realtime Database:</strong> We use Google's Firebase as cloud storage
-              strictly to manage and validate the issuance and redemption of Gift Codes.</li>
-          </ul>
-
-          <h3>3. Anonymous Identifiers</h3>
-          <p>To securely link your purchases and permanent licenses, we collect or generate anonymous identifiers on
-            your device (such as <code>deviceId</code> or <code>App User ID</code>). These identifiers are used
-            strictly for license verification purposes and synchronizing the Flint Pro status through the
-            aforementioned services, without being tied to your real identity.</p>
+          <h3>2. Local Storage</h3>
+          <p>Your tasks, journal entries, and financial records are stored locally on your device. They are not
+            sent to our servers or any third party, and we do not use analytics or tracking services.</p>
           <hr class="legal-hr"/>
           <h2 id="terms-en">B. Terms of Use / EULA</h2>
-          <p>By downloading or using Flint, you agree to these terms.</p>
+          <p>By downloading or using Paratu, you agree to these terms.</p>
           <h3>1. License</h3>
-          <p>Flint is licensed, not sold. Your use is subject to Apple's Standard EULA: <a href="https://www.apple.com/legal/internet-services/itunes/dev/stdeula/" target="_blank" rel="noopener">apple.com/legal/…/stdeula</a></p>
+          <p>Paratu is licensed, not sold. Your use is subject to Apple's Standard EULA: <a href="https://www.apple.com/legal/internet-services/itunes/dev/stdeula/" target="_blank" rel="noopener">apple.com/legal/…/stdeula</a></p>
           <h3>2. Purchases and Refunds</h3>
-          <p>Flint offers lifetime licenses (Flint Pro), not subscriptions. All purchases are processed by Apple.</p>
-          <h3>3. Anti-Fraud Policy (Gift Codes)</h3>
-          <p>Gift Codes have no monetary value and their resale is strictly prohibited. Any abuse results in automatic license revocation.</p>
-          <h3>4. Disclaimer of Warranties</h3>
+          <p>Paratu is currently free and requires no purchase to access its features. If in-app purchases are offered in the future, they will be processed by Apple.</p>
+          <h3>3. Disclaimer of Warranties</h3>
           <p>The app is provided "as is". Your information is stored locally, and it is your responsibility to back it up.</p>
         </div>
       </section>
@@ -722,10 +633,10 @@
       <section class="section section-bordered reveal" id="contacto">
         <div class="contact-box">
           <div>
-            <h2 class="contact-h" data-lang="es">¿Tienes algo<br><em>que decir?</em></h2>
-            <h2 class="contact-h" data-lang="en">Have something<br><em>to say?</em></h2>
-            <p class="contact-sub" data-lang="es">Errores, sugerencias, o solo cómo usas Flint. Escribe directo al desarrollador.</p>
-            <p class="contact-sub" data-lang="en">Bugs, suggestions, or just how you use Flint. Write directly to the developer.</p>
+            <h2 class="contact-h" data-lang="es">¿Tienes una<br><em>sugerencia?</em></h2>
+            <h2 class="contact-h" data-lang="en">Have a<br><em>suggestion?</em></h2>
+            <p class="contact-sub" data-lang="es">Errores, sugerencias, o solo cómo usas Paratu. Escribe directo al desarrollador.</p>
+            <p class="contact-sub" data-lang="en">Bugs, suggestions, or just how you use Paratu. Write directly to the developer.</p>
           </div>
           <div class="contact-r">
             <div class="contact-email">joaquinalvarezme@gmail.com</div>
@@ -740,9 +651,9 @@
 
       <!-- FOOTER -->
       <footer>
-        <div class="footer-logo">Flint<em>.</em></div>
-        <div class="footer-note" data-lang="es">© 2025 Joaquín Álvarez Mercado · Ciudad Acuña, México<br>Página estática · Sin cookies · Sin seguimiento</div>
-        <div class="footer-note" data-lang="en">© 2025 Joaquín Álvarez Mercado · Ciudad Acuña, México<br>Static page · No cookies · No tracking</div>
+        <div class="footer-logo">Paratu<em>.</em></div>
+        <div class="footer-note" data-lang="es">© 2026 Joaquín Álvarez Mercado · Ciudad Acuña, México<br>Página estática · Sin cookies · Sin seguimiento</div>
+        <div class="footer-note" data-lang="en">© 2026 Joaquín Álvarez Mercado · Ciudad Acuña, México<br>Static page · No cookies · No tracking</div>
       </footer>
 
     </div>
@@ -796,6 +707,15 @@
       document.documentElement.classList.toggle('lang-en', lang === 'en');
       document.getElementById('btn-es').classList.toggle('active', lang === 'es');
       document.getElementById('btn-en').classList.toggle('active', lang === 'en');
+      try { localStorage.setItem('paratu-lang', lang); } catch (e) {}
+    }
+
+    function savedLang() {
+      try {
+        var l = localStorage.getItem('paratu-lang');
+        if (l === 'es' || l === 'en') return l;
+      } catch (e) {}
+      return 'es';
     }
 
     /* LEGAL TABS */
@@ -821,7 +741,7 @@
       scrollToLegal(location.hash);
     });
 
-    setLang('es');
+    setLang(savedLang());
     scrollToLegal(location.hash || '');
   </script>
 </body>
